@@ -1,0 +1,4 @@
+depends:
+  - "dayan/community/srv-info/info.proto"
+  - "dayan/common/srv-atomicid/atomicid.proto"
+

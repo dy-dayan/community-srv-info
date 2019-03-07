@@ -1,4 +1,4 @@
-package dal
+package db
 
 type Building struct {
 	ID   string    `bson:"_id"`

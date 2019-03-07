@@ -1,4 +1,4 @@
-package dal
+package db
 
 type Asset struct {
 	ID          string `bson:"_id"`
