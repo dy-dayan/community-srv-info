@@ -2,15 +2,15 @@ package main
 
 import (
 	"github.com/dy-dayan/community-srv-info/dal/db"
-	"github.com/dy-dayan/community-srv-info/idl/dayan/community/srv-info"
-	"github.com/dy-gopkg/kit"
 	"github.com/dy-dayan/community-srv-info/handler"
+	"github.com/dy-dayan/community-srv-info/idl/dayan/community/srv-info"
 	"github.com/dy-dayan/community-srv-info/util/config"
+	"github.com/dy-gopkg/kit/micro"
 	"github.com/sirupsen/logrus"
 )
 
 func main(){
-	kit.Init()
+	micro.Init()
 
 	// 初始化配置
 	uconfig.Init()
@@ -21,10 +21,10 @@ func main(){
 	//TODO 初始化缓存
 	//cache.CacheInit()
 
-	err := dayan_community_srv_info.RegisterCommunityInfoHandler(kit.Server(), &handler.Handle{})
+	err := dayan_community_srv_info.RegisterCommunityInfoHandler(micro.Server(), &handler.Handle{})
 	if err != nil {
 		logrus.Fatalf("RegisterPassportHandler error:%v", err)
 	}
 
-	kit.Run()
+	micro.Run()
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/dy-dayan/community-srv-info/idl"
 	srv "github.com/dy-dayan/community-srv-info/idl/dayan/community/srv-info"
 	atomicid "github.com/dy-dayan/community-srv-info/idl/dayan/common/srv-atomicid"
-	"github.com/dy-gopkg/kit"
+	"github.com/dy-gopkg/kit/micro"
 	"github.com/sirupsen/logrus"
 )
 
@@ -19,7 +19,7 @@ func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, rsp
 		Code:int32(base.CODE_OK),
 	}
 	// 获取一个自增id
-	cl := atomicid.NewAtomicIDService("dayan.common.srv.atomicid", kit.Client())
+	cl := atomicid.NewAtomicIDService("dayan.common.srv.atomicid", micro.Client())
 	req1 := &atomicid.GetIDReq{Label: "dayan.community.srv.proposal.proposal_id"}
 	rsp1, err := cl.GetID(ctx, req1)
 	if err != nil {
