@@ -13,7 +13,7 @@ const (
 
 //Building 楼宇
 type Building struct {
-	ID          string    `bson:"_id"`
+	ID          int64    `bson:"_id"`
 	Name        string    `bson:"name"`
 	Loc         []float32 `bson:"loc"`
 	ElevatorIDs []int64   `bson:"elevator_ids"`
@@ -76,7 +76,7 @@ func DelBuildingByID(id int64) error {
 	return err
 }
 
-func GetBUildingByID(id int64) (*Building, error) {
+func GetBuildingByID(id int64) (*Building, error) {
 	ses := defaultMgo.Copy()
 	if ses == nil {
 		return nil, errors.New("mgo session is nil")

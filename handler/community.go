@@ -13,27 +13,27 @@ import (
 type Handle struct {
 }
 
-func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, rsp *srv.AddCommunityResp) error {
-	rsp.BaseResp = &base.Resp{
+func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, resp *srv.AddCommunityResp) error {
+	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
 	}
 	// 获取一个自增id
-	cl := atomicid.NewAtomicIDService("dayan.common.srv.atomicid", micro.Client())
-	req1 := &atomicid.GetIDReq{Label: "dayan.community.srv.community.community_id"}
-	rsp1, err := cl.GetID(ctx, req1)
+	cl := atomicid.NewAtomicIDService("dayan.common.srv.automicid", micro.Client())
+	idReq := &atomicid.GetIDReq{Label: "dayan.community.srv.community.community_id"}
+	idResp, err := cl.GetID(ctx, idReq)
 	if err != nil {
 		logrus.Errorf("atomicid.GetID error:%v", err)
 		return err
 	}
 
-	if rsp1.BaseResp.Code != int32(base.CODE_OK) {
-		logrus.Warnf("atomicid.GetID resp code:%v, msg:%s", rsp1.BaseResp.Code, rsp1.BaseResp.Msg)
-		rsp.BaseResp = rsp1.BaseResp
+	if idResp.BaseResp.Code != int32(base.CODE_OK) {
+		logrus.Warnf("atomicid.GetID resp code:%v, msg:%s", idResp.BaseResp.Code, idResp.BaseResp.Msg)
+		resp.BaseResp = idResp.BaseResp
 		return nil
 	}
 
 	info := &db.CommunityInfo{
-		ID:           rsp1.Id,
+		ID:           idResp.Id,
 		Name:         req.Community.Name,
 		Province:     req.Community.Province,
 		City:         req.Community.City,
@@ -52,57 +52,57 @@ func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, rsp
 	err = db.UpsertCommunityInfo(info)
 	if err != nil {
 		logrus.Warnf("db.UpsertCommunityInfo error:%v", err)
-		rsp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
-		rsp.BaseResp.Msg = err.Error()
+		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
+		resp.BaseResp.Msg = err.Error()
 		return nil
 	}
 	return nil
 }
 
-func (h *Handle) DelCommunity(ctx context.Context, req *srv.DelCommunityReq, rsp *srv.DelCommunityResp) error {
-	rsp.BaseResp = &base.Resp{
+func (h *Handle) DelCommunity(ctx context.Context, req *srv.DelCommunityReq, resp *srv.DelCommunityResp) error {
+	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
 	}
 
 	err := db.DelCommunityInfo(req.CommunityID)
 	if err != nil {
 		logrus.Warnf("db.DelCommunityInfo error:%v", err)
-		rsp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
-		rsp.BaseResp.Msg = err.Error()
+		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
+		resp.BaseResp.Msg = err.Error()
 		return nil
 	}
 	return nil
 }
 
-func (h *Handle) GetCommunity(ctx context.Context, req *srv.GetCommunityReq, rsp *srv.GetCommunityResp) error {
-	rsp.BaseResp = &base.Resp{
+func (h *Handle) GetCommunity(ctx context.Context, req *srv.GetCommunityReq, resp *srv.GetCommunityResp) error {
+	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
 	}
 
 	info, err := db.GetCommunityInfoByID(req.CommunityID)
 	if err != nil {
 		logrus.Warnf("db.GetCommunityInfoByID error:%v", err)
-		rsp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
-		rsp.BaseResp.Msg = err.Error()
+		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
+		resp.BaseResp.Msg = err.Error()
 		return nil
 	}
 
-	rsp.Community.Name = info.Name
-	rsp.Community.Province = info.Province
-	rsp.Community.City = info.City
-	rsp.Community.Region = info.Region
-	rsp.Community.Street = info.Street
-	rsp.Community.CouncilID = info.CouncilID
-	rsp.Community.OrgID = info.OrgID
-	rsp.Community.HouseCount = info.HouseCount
-	rsp.Community.CheckInCount = info.CheckInCount
-	rsp.Community.BuildingArea = info.BuildingArea
-	rsp.Community.GreeningArea = info.GreeningArea
-	rsp.Community.Loc = info.Loc
-	rsp.Community.State = info.State
-	rsp.Community.OperatorID = info.OperatorID
-	rsp.CreatedAt = info.CreatedAt
-	rsp.UpdatedAt = info.UpdatedAt
+	resp.Community.Name = info.Name
+	resp.Community.Province = info.Province
+	resp.Community.City = info.City
+	resp.Community.Region = info.Region
+	resp.Community.Street = info.Street
+	resp.Community.CouncilID = info.CouncilID
+	resp.Community.OrgID = info.OrgID
+	resp.Community.HouseCount = info.HouseCount
+	resp.Community.CheckInCount = info.CheckInCount
+	resp.Community.BuildingArea = info.BuildingArea
+	resp.Community.GreeningArea = info.GreeningArea
+	resp.Community.Loc = info.Loc
+	resp.Community.State = info.State
+	resp.Community.OperatorID = info.OperatorID
+	resp.CreatedAt = info.CreatedAt
+	resp.UpdatedAt = info.UpdatedAt
 
 	return nil
 }

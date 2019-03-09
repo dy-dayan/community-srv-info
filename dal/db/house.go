@@ -12,7 +12,7 @@ const (
 )
 
 type House struct {
-	ID         string  `bson:"_id"`
+	ID         int64  `bson:"_id"`
 	BuildingID int64   `bson:"building_id"`
 	Unit       string  `bson:"unit"`
 	Acreage    float32 `bson:"acreage"`
