@@ -2,12 +2,12 @@ package handler
 
 import (
 	"context"
-	"github.com/dy-gopkg/kit/micro"
-	"github.com/sirupsen/logrus"
 	"github.com/dy-dayan/community-srv-info/dal/db"
 	"github.com/dy-dayan/community-srv-info/idl"
 	atomicid "github.com/dy-dayan/community-srv-info/idl/dayan/common/srv-atomicid"
 	srv "github.com/dy-dayan/community-srv-info/idl/dayan/community/srv-info"
+	"github.com/dy-gopkg/kit/micro"
+	"github.com/sirupsen/logrus"
 )
 
 func (h *Handle) AddAsset(ctx context.Context, req *srv.AddAssetReq,
@@ -16,7 +16,7 @@ func (h *Handle) AddAsset(ctx context.Context, req *srv.AddAssetReq,
 		Code: int32(base.CODE_OK),
 	}
 
-	cl := atomicid.NewAtomicIDService("dayan.common.srv.automicid",micro.Client())
+	cl := atomicid.NewAtomicIDService("dayan.common.srv.automicid", micro.Client())
 	idReq := &atomicid.GetIDReq{Label: "dayan.community.srv.community.asset_id"}
 	idResp, err := cl.GetID(ctx, idReq)
 
@@ -58,12 +58,12 @@ func (h *Handle) AddAsset(ctx context.Context, req *srv.AddAssetReq,
 func (h *Handle) DelAsset(ctx context.Context, req *srv.DelAssetReq,
 	resp *srv.DelAssetResp) error {
 	resp.BaseResp = &base.Resp{
-		Code:int32(base.CODE_OK),
+		Code: int32(base.CODE_OK),
 	}
 
 	err := db.DelAssetByID(req.AssetID)
-	if err != nil{
-		logrus.Warnf("db.DelAsset erroro:%v",err)
+	if err != nil {
+		logrus.Warnf("db.DelAsset erroro:%v", err)
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
 		resp.BaseResp.Msg = err.Error()
 		return nil
@@ -74,11 +74,11 @@ func (h *Handle) DelAsset(ctx context.Context, req *srv.DelAssetReq,
 func (h *Handle) GetAsset(ctx context.Context, req *srv.GetAssetReq,
 	resp *srv.GetAssetResp) error {
 	resp.BaseResp = &base.Resp{
-		Code:int32(base.CODE_OK),
+		Code: int32(base.CODE_OK),
 	}
 
 	asset, err := db.GetAssetByID(req.AssetID)
-	if err != nil{
+	if err != nil {
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
 		resp.BaseResp.Msg = err.Error()
 		return nil

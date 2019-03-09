@@ -10,14 +10,14 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func(h *Handle) AddHouse(ctx context.Context, req *srv.AddHouseReq, resp *srv.AddHouseResp) error {
+func (h *Handle) AddHouse(ctx context.Context, req *srv.AddHouseReq, resp *srv.AddHouseResp) error {
 	resp.BaseResp = &base.Resp{
-		Code:                 int32(base.CODE_OK),
+		Code: int32(base.CODE_OK),
 	}
 	cl := atomicid.NewAtomicIDService("dayan.common.srv.atomicid", micro.Client())
 	idReq := &atomicid.GetIDReq{Label: "dayan.community.srv.community.building_id"}
 	idResp, err := cl.GetID(ctx, idReq)
-	if err != nil{
+	if err != nil {
 		logrus.Warnf("atomicid.GetID resp code:%v, msg:%s", idResp.BaseResp.Code, idResp.BaseResp.Msg)
 		resp.BaseResp = idResp.BaseResp
 		return nil
@@ -34,7 +34,7 @@ func(h *Handle) AddHouse(ctx context.Context, req *srv.AddHouseReq, resp *srv.Ad
 	}
 
 	err = db.UpsertHouse(&house)
-	if err != nil{
+	if err != nil {
 		logrus.Warnf("db.UpsertHouse error :%v", err)
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
 		resp.BaseResp.Msg = err.Error()
@@ -42,14 +42,14 @@ func(h *Handle) AddHouse(ctx context.Context, req *srv.AddHouseReq, resp *srv.Ad
 	return nil
 }
 
-func(h *Handle) DelHouse(ctx context.Context, req *srv.DelHouseReq, resp *srv.DelHouseResp)error{
+func (h *Handle) DelHouse(ctx context.Context, req *srv.DelHouseReq, resp *srv.DelHouseResp) error {
 	resp.BaseResp = &base.Resp{
-		Code:                 int32(base.CODE_OK),
+		Code: int32(base.CODE_OK),
 	}
 
 	err := db.DelHouseByID(req.ID)
 
-	if err != nil{
+	if err != nil {
 		logrus.Warnf("db.DelHouse error :%v", err)
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
 		resp.BaseResp.Msg = err.Error()
@@ -57,15 +57,14 @@ func(h *Handle) DelHouse(ctx context.Context, req *srv.DelHouseReq, resp *srv.De
 	return nil
 }
 
-
-func (h *Handle)GetHouse(ctx context.Context, req *srv.GetHouseReq, resp *srv.GetHouseResp)error{
-resp.BaseResp = &base.Resp{
-		Code:                 int32(base.CODE_OK),
+func (h *Handle) GetHouse(ctx context.Context, req *srv.GetHouseReq, resp *srv.GetHouseResp) error {
+	resp.BaseResp = &base.Resp{
+		Code: int32(base.CODE_OK),
 	}
-	ret , err := db.GetHouseByID(req.ID)
+	ret, err := db.GetHouseByID(req.ID)
 
-	if err != nil{
-logrus.Warnf("db.GetHouse error :%v", err)
+	if err != nil {
+		logrus.Warnf("db.GetHouse error :%v", err)
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
 		resp.BaseResp.Msg = err.Error()
 	}
