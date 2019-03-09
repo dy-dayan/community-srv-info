@@ -8,12 +8,34 @@ It is generated from these files:
 	info.proto
 
 It has these top-level messages:
+	CommunityCommon
 	AddCommunityReq
 	AddCommunityResp
 	DelCommunityReq
 	DelCommunityResp
 	GetCommunityReq
 	GetCommunityResp
+	AssetCommon
+	AddAssetReq
+	AddAssetResp
+	DelAssetReq
+	DelAssetResp
+	GetAssetReq
+	GetAssetResp
+	BuildingCommon
+	AddBuildingReq
+	AddBuildingResp
+	DelBuilingReq
+	DelBuilingResp
+	GetBuildingReq
+	GetBuildingResp
+	HouseCommon
+	AddHouseReq
+	AddHouseResp
+	DelHouseReq
+	DelHouseResp
+	GetHouseReq
+	GetHouseResp
 */
 package dayan_community_srv_info
 
@@ -53,6 +75,18 @@ type CommunityInfoService interface {
 	DelCommunity(ctx context.Context, in *DelCommunityReq, opts ...client.CallOption) (*DelCommunityResp, error)
 	// 查看小区
 	GetCommunity(ctx context.Context, in *GetCommunityReq, opts ...client.CallOption) (*GetCommunityResp, error)
+	// 资产
+	AddAsset(ctx context.Context, in *AddAssetReq, opts ...client.CallOption) (*AddAssetResp, error)
+	DelAsset(ctx context.Context, in *DelAssetReq, opts ...client.CallOption) (*DelAssetResp, error)
+	GetAsset(ctx context.Context, in *GetAssetReq, opts ...client.CallOption) (*GetAssetResp, error)
+	// 楼宇
+	AddBuilding(ctx context.Context, in *AddBuildingReq, opts ...client.CallOption) (*AddBuildingResp, error)
+	DelBuildding(ctx context.Context, in *DelBuilingReq, opts ...client.CallOption) (*DelBuilingResp, error)
+	GetBuilding(ctx context.Context, in *GetBuildingReq, opts ...client.CallOption) (*GetBuildingResp, error)
+	// 房屋
+	AddHouse(ctx context.Context, in *AddHouseReq, opts ...client.CallOption) (*AddHouseResp, error)
+	DelHouse(ctx context.Context, in *DelHouseReq, opts ...client.CallOption) (*DelHouseResp, error)
+	GetHouse(ctx context.Context, in *GetHouseReq, opts ...client.CallOption) (*GetHouseResp, error)
 }
 
 type communityInfoService struct {
@@ -103,6 +137,96 @@ func (c *communityInfoService) GetCommunity(ctx context.Context, in *GetCommunit
 	return out, nil
 }
 
+func (c *communityInfoService) AddAsset(ctx context.Context, in *AddAssetReq, opts ...client.CallOption) (*AddAssetResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.AddAsset", in)
+	out := new(AddAssetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *communityInfoService) DelAsset(ctx context.Context, in *DelAssetReq, opts ...client.CallOption) (*DelAssetResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.DelAsset", in)
+	out := new(DelAssetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *communityInfoService) GetAsset(ctx context.Context, in *GetAssetReq, opts ...client.CallOption) (*GetAssetResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.GetAsset", in)
+	out := new(GetAssetResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *communityInfoService) AddBuilding(ctx context.Context, in *AddBuildingReq, opts ...client.CallOption) (*AddBuildingResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.AddBuilding", in)
+	out := new(AddBuildingResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *communityInfoService) DelBuildding(ctx context.Context, in *DelBuilingReq, opts ...client.CallOption) (*DelBuilingResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.DelBuildding", in)
+	out := new(DelBuilingResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *communityInfoService) GetBuilding(ctx context.Context, in *GetBuildingReq, opts ...client.CallOption) (*GetBuildingResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.GetBuilding", in)
+	out := new(GetBuildingResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *communityInfoService) AddHouse(ctx context.Context, in *AddHouseReq, opts ...client.CallOption) (*AddHouseResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.AddHouse", in)
+	out := new(AddHouseResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *communityInfoService) DelHouse(ctx context.Context, in *DelHouseReq, opts ...client.CallOption) (*DelHouseResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.DelHouse", in)
+	out := new(DelHouseResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *communityInfoService) GetHouse(ctx context.Context, in *GetHouseReq, opts ...client.CallOption) (*GetHouseResp, error) {
+	req := c.c.NewRequest(c.name, "CommunityInfo.GetHouse", in)
+	out := new(GetHouseResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CommunityInfo service
 
 type CommunityInfoHandler interface {
@@ -112,6 +236,18 @@ type CommunityInfoHandler interface {
 	DelCommunity(context.Context, *DelCommunityReq, *DelCommunityResp) error
 	// 查看小区
 	GetCommunity(context.Context, *GetCommunityReq, *GetCommunityResp) error
+	// 资产
+	AddAsset(context.Context, *AddAssetReq, *AddAssetResp) error
+	DelAsset(context.Context, *DelAssetReq, *DelAssetResp) error
+	GetAsset(context.Context, *GetAssetReq, *GetAssetResp) error
+	// 楼宇
+	AddBuilding(context.Context, *AddBuildingReq, *AddBuildingResp) error
+	DelBuildding(context.Context, *DelBuilingReq, *DelBuilingResp) error
+	GetBuilding(context.Context, *GetBuildingReq, *GetBuildingResp) error
+	// 房屋
+	AddHouse(context.Context, *AddHouseReq, *AddHouseResp) error
+	DelHouse(context.Context, *DelHouseReq, *DelHouseResp) error
+	GetHouse(context.Context, *GetHouseReq, *GetHouseResp) error
 }
 
 func RegisterCommunityInfoHandler(s server.Server, hdlr CommunityInfoHandler, opts ...server.HandlerOption) error {
@@ -119,6 +255,15 @@ func RegisterCommunityInfoHandler(s server.Server, hdlr CommunityInfoHandler, op
 		AddCommunity(ctx context.Context, in *AddCommunityReq, out *AddCommunityResp) error
 		DelCommunity(ctx context.Context, in *DelCommunityReq, out *DelCommunityResp) error
 		GetCommunity(ctx context.Context, in *GetCommunityReq, out *GetCommunityResp) error
+		AddAsset(ctx context.Context, in *AddAssetReq, out *AddAssetResp) error
+		DelAsset(ctx context.Context, in *DelAssetReq, out *DelAssetResp) error
+		GetAsset(ctx context.Context, in *GetAssetReq, out *GetAssetResp) error
+		AddBuilding(ctx context.Context, in *AddBuildingReq, out *AddBuildingResp) error
+		DelBuildding(ctx context.Context, in *DelBuilingReq, out *DelBuilingResp) error
+		GetBuilding(ctx context.Context, in *GetBuildingReq, out *GetBuildingResp) error
+		AddHouse(ctx context.Context, in *AddHouseReq, out *AddHouseResp) error
+		DelHouse(ctx context.Context, in *DelHouseReq, out *DelHouseResp) error
+		GetHouse(ctx context.Context, in *GetHouseReq, out *GetHouseResp) error
 	}
 	type CommunityInfo struct {
 		communityInfo
@@ -141,4 +286,40 @@ func (h *communityInfoHandler) DelCommunity(ctx context.Context, in *DelCommunit
 
 func (h *communityInfoHandler) GetCommunity(ctx context.Context, in *GetCommunityReq, out *GetCommunityResp) error {
 	return h.CommunityInfoHandler.GetCommunity(ctx, in, out)
+}
+
+func (h *communityInfoHandler) AddAsset(ctx context.Context, in *AddAssetReq, out *AddAssetResp) error {
+	return h.CommunityInfoHandler.AddAsset(ctx, in, out)
+}
+
+func (h *communityInfoHandler) DelAsset(ctx context.Context, in *DelAssetReq, out *DelAssetResp) error {
+	return h.CommunityInfoHandler.DelAsset(ctx, in, out)
+}
+
+func (h *communityInfoHandler) GetAsset(ctx context.Context, in *GetAssetReq, out *GetAssetResp) error {
+	return h.CommunityInfoHandler.GetAsset(ctx, in, out)
+}
+
+func (h *communityInfoHandler) AddBuilding(ctx context.Context, in *AddBuildingReq, out *AddBuildingResp) error {
+	return h.CommunityInfoHandler.AddBuilding(ctx, in, out)
+}
+
+func (h *communityInfoHandler) DelBuildding(ctx context.Context, in *DelBuilingReq, out *DelBuilingResp) error {
+	return h.CommunityInfoHandler.DelBuildding(ctx, in, out)
+}
+
+func (h *communityInfoHandler) GetBuilding(ctx context.Context, in *GetBuildingReq, out *GetBuildingResp) error {
+	return h.CommunityInfoHandler.GetBuilding(ctx, in, out)
+}
+
+func (h *communityInfoHandler) AddHouse(ctx context.Context, in *AddHouseReq, out *AddHouseResp) error {
+	return h.CommunityInfoHandler.AddHouse(ctx, in, out)
+}
+
+func (h *communityInfoHandler) DelHouse(ctx context.Context, in *DelHouseReq, out *DelHouseResp) error {
+	return h.CommunityInfoHandler.DelHouse(ctx, in, out)
+}
+
+func (h *communityInfoHandler) GetHouse(ctx context.Context, in *GetHouseReq, out *GetHouseResp) error {
+	return h.CommunityInfoHandler.GetHouse(ctx, in, out)
 }

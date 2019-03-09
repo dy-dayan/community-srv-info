@@ -13,7 +13,6 @@ var (
 
 const (
 	DCommunity = "dayan_community"
-	CCommunityInfo = "community_info"
 )
 
 func Mgo() *mgo.Session {

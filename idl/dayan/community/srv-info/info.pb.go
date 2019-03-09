@@ -21,7 +21,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type AddCommunityReq struct {
+type CommunityCommon struct {
 	Name                 string    `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
 	Province             string    `protobuf:"bytes,2,opt,name=Province,proto3" json:"Province,omitempty"`
 	City                 string    `protobuf:"bytes,3,opt,name=City,proto3" json:"City,omitempty"`
@@ -41,11 +41,141 @@ type AddCommunityReq struct {
 	XXX_sizecache        int32     `json:"-"`
 }
 
+func (m *CommunityCommon) Reset()         { *m = CommunityCommon{} }
+func (m *CommunityCommon) String() string { return proto.CompactTextString(m) }
+func (*CommunityCommon) ProtoMessage()    {}
+func (*CommunityCommon) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{0}
+}
+
+func (m *CommunityCommon) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CommunityCommon.Unmarshal(m, b)
+}
+func (m *CommunityCommon) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CommunityCommon.Marshal(b, m, deterministic)
+}
+func (m *CommunityCommon) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CommunityCommon.Merge(m, src)
+}
+func (m *CommunityCommon) XXX_Size() int {
+	return xxx_messageInfo_CommunityCommon.Size(m)
+}
+func (m *CommunityCommon) XXX_DiscardUnknown() {
+	xxx_messageInfo_CommunityCommon.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CommunityCommon proto.InternalMessageInfo
+
+func (m *CommunityCommon) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *CommunityCommon) GetProvince() string {
+	if m != nil {
+		return m.Province
+	}
+	return ""
+}
+
+func (m *CommunityCommon) GetCity() string {
+	if m != nil {
+		return m.City
+	}
+	return ""
+}
+
+func (m *CommunityCommon) GetRegion() string {
+	if m != nil {
+		return m.Region
+	}
+	return ""
+}
+
+func (m *CommunityCommon) GetStreet() string {
+	if m != nil {
+		return m.Street
+	}
+	return ""
+}
+
+func (m *CommunityCommon) GetCouncilID() int64 {
+	if m != nil {
+		return m.CouncilID
+	}
+	return 0
+}
+
+func (m *CommunityCommon) GetOrgID() int64 {
+	if m != nil {
+		return m.OrgID
+	}
+	return 0
+}
+
+func (m *CommunityCommon) GetHouseCount() int32 {
+	if m != nil {
+		return m.HouseCount
+	}
+	return 0
+}
+
+func (m *CommunityCommon) GetCheckInCount() int32 {
+	if m != nil {
+		return m.CheckInCount
+	}
+	return 0
+}
+
+func (m *CommunityCommon) GetBuildingArea() int32 {
+	if m != nil {
+		return m.BuildingArea
+	}
+	return 0
+}
+
+func (m *CommunityCommon) GetGreeningArea() int32 {
+	if m != nil {
+		return m.GreeningArea
+	}
+	return 0
+}
+
+func (m *CommunityCommon) GetLoc() []float32 {
+	if m != nil {
+		return m.Loc
+	}
+	return nil
+}
+
+func (m *CommunityCommon) GetState() int32 {
+	if m != nil {
+		return m.State
+	}
+	return 0
+}
+
+func (m *CommunityCommon) GetOperatorID() int64 {
+	if m != nil {
+		return m.OperatorID
+	}
+	return 0
+}
+
+type AddCommunityReq struct {
+	Community            *CommunityCommon `protobuf:"bytes,1,opt,name=Community,proto3" json:"Community,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
 func (m *AddCommunityReq) Reset()         { *m = AddCommunityReq{} }
 func (m *AddCommunityReq) String() string { return proto.CompactTextString(m) }
 func (*AddCommunityReq) ProtoMessage()    {}
 func (*AddCommunityReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f140d5b28dddb141, []int{0}
+	return fileDescriptor_f140d5b28dddb141, []int{1}
 }
 
 func (m *AddCommunityReq) XXX_Unmarshal(b []byte) error {
@@ -66,102 +196,11 @@ func (m *AddCommunityReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_AddCommunityReq proto.InternalMessageInfo
 
-func (m *AddCommunityReq) GetName() string {
+func (m *AddCommunityReq) GetCommunity() *CommunityCommon {
 	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *AddCommunityReq) GetProvince() string {
-	if m != nil {
-		return m.Province
-	}
-	return ""
-}
-
-func (m *AddCommunityReq) GetCity() string {
-	if m != nil {
-		return m.City
-	}
-	return ""
-}
-
-func (m *AddCommunityReq) GetRegion() string {
-	if m != nil {
-		return m.Region
-	}
-	return ""
-}
-
-func (m *AddCommunityReq) GetStreet() string {
-	if m != nil {
-		return m.Street
-	}
-	return ""
-}
-
-func (m *AddCommunityReq) GetCouncilID() int64 {
-	if m != nil {
-		return m.CouncilID
-	}
-	return 0
-}
-
-func (m *AddCommunityReq) GetOrgID() int64 {
-	if m != nil {
-		return m.OrgID
-	}
-	return 0
-}
-
-func (m *AddCommunityReq) GetHouseCount() int32 {
-	if m != nil {
-		return m.HouseCount
-	}
-	return 0
-}
-
-func (m *AddCommunityReq) GetCheckInCount() int32 {
-	if m != nil {
-		return m.CheckInCount
-	}
-	return 0
-}
-
-func (m *AddCommunityReq) GetBuildingArea() int32 {
-	if m != nil {
-		return m.BuildingArea
-	}
-	return 0
-}
-
-func (m *AddCommunityReq) GetGreeningArea() int32 {
-	if m != nil {
-		return m.GreeningArea
-	}
-	return 0
-}
-
-func (m *AddCommunityReq) GetLoc() []float32 {
-	if m != nil {
-		return m.Loc
+		return m.Community
 	}
 	return nil
-}
-
-func (m *AddCommunityReq) GetState() int32 {
-	if m != nil {
-		return m.State
-	}
-	return 0
-}
-
-func (m *AddCommunityReq) GetOperatorID() int64 {
-	if m != nil {
-		return m.OperatorID
-	}
-	return 0
 }
 
 type AddCommunityResp struct {
@@ -176,7 +215,7 @@ func (m *AddCommunityResp) Reset()         { *m = AddCommunityResp{} }
 func (m *AddCommunityResp) String() string { return proto.CompactTextString(m) }
 func (*AddCommunityResp) ProtoMessage()    {}
 func (*AddCommunityResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f140d5b28dddb141, []int{1}
+	return fileDescriptor_f140d5b28dddb141, []int{2}
 }
 
 func (m *AddCommunityResp) XXX_Unmarshal(b []byte) error {
@@ -222,7 +261,7 @@ func (m *DelCommunityReq) Reset()         { *m = DelCommunityReq{} }
 func (m *DelCommunityReq) String() string { return proto.CompactTextString(m) }
 func (*DelCommunityReq) ProtoMessage()    {}
 func (*DelCommunityReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f140d5b28dddb141, []int{2}
+	return fileDescriptor_f140d5b28dddb141, []int{3}
 }
 
 func (m *DelCommunityReq) XXX_Unmarshal(b []byte) error {
@@ -261,7 +300,7 @@ func (m *DelCommunityResp) Reset()         { *m = DelCommunityResp{} }
 func (m *DelCommunityResp) String() string { return proto.CompactTextString(m) }
 func (*DelCommunityResp) ProtoMessage()    {}
 func (*DelCommunityResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f140d5b28dddb141, []int{3}
+	return fileDescriptor_f140d5b28dddb141, []int{4}
 }
 
 func (m *DelCommunityResp) XXX_Unmarshal(b []byte) error {
@@ -300,7 +339,7 @@ func (m *GetCommunityReq) Reset()         { *m = GetCommunityReq{} }
 func (m *GetCommunityReq) String() string { return proto.CompactTextString(m) }
 func (*GetCommunityReq) ProtoMessage()    {}
 func (*GetCommunityReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f140d5b28dddb141, []int{4}
+	return fileDescriptor_f140d5b28dddb141, []int{5}
 }
 
 func (m *GetCommunityReq) XXX_Unmarshal(b []byte) error {
@@ -329,33 +368,20 @@ func (m *GetCommunityReq) GetCommunityID() int64 {
 }
 
 type GetCommunityResp struct {
-	BaseResp             *idl.Resp `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
-	Name                 string    `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty"`
-	Province             string    `protobuf:"bytes,3,opt,name=Province,proto3" json:"Province,omitempty"`
-	City                 string    `protobuf:"bytes,4,opt,name=City,proto3" json:"City,omitempty"`
-	Region               string    `protobuf:"bytes,5,opt,name=Region,proto3" json:"Region,omitempty"`
-	Street               string    `protobuf:"bytes,6,opt,name=Street,proto3" json:"Street,omitempty"`
-	CouncilID            int64     `protobuf:"varint,7,opt,name=CouncilID,proto3" json:"CouncilID,omitempty"`
-	OrgID                int64     `protobuf:"varint,8,opt,name=OrgID,proto3" json:"OrgID,omitempty"`
-	HouseCount           int32     `protobuf:"varint,9,opt,name=HouseCount,proto3" json:"HouseCount,omitempty"`
-	CheckInCount         int32     `protobuf:"varint,10,opt,name=CheckInCount,proto3" json:"CheckInCount,omitempty"`
-	BuildingArea         int32     `protobuf:"varint,11,opt,name=BuildingArea,proto3" json:"BuildingArea,omitempty"`
-	GreeningArea         int32     `protobuf:"varint,12,opt,name=GreeningArea,proto3" json:"GreeningArea,omitempty"`
-	Loc                  []float32 `protobuf:"fixed32,13,rep,packed,name=Loc,proto3" json:"Loc,omitempty"`
-	State                int32     `protobuf:"varint,14,opt,name=State,proto3" json:"State,omitempty"`
-	OperatorID           int64     `protobuf:"varint,15,opt,name=OperatorID,proto3" json:"OperatorID,omitempty"`
-	CreatedAt            int64     `protobuf:"varint,16,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty"`
-	UpdatedAt            int64     `protobuf:"varint,17,opt,name=UpdatedAt,proto3" json:"UpdatedAt,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+	BaseResp             *idl.Resp        `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	Community            *CommunityCommon `protobuf:"bytes,2,opt,name=Community,proto3" json:"Community,omitempty"`
+	CreatedAt            int64            `protobuf:"varint,3,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty"`
+	UpdatedAt            int64            `protobuf:"varint,4,opt,name=UpdatedAt,proto3" json:"UpdatedAt,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
 }
 
 func (m *GetCommunityResp) Reset()         { *m = GetCommunityResp{} }
 func (m *GetCommunityResp) String() string { return proto.CompactTextString(m) }
 func (*GetCommunityResp) ProtoMessage()    {}
 func (*GetCommunityResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f140d5b28dddb141, []int{5}
+	return fileDescriptor_f140d5b28dddb141, []int{6}
 }
 
 func (m *GetCommunityResp) XXX_Unmarshal(b []byte) error {
@@ -383,102 +409,11 @@ func (m *GetCommunityResp) GetBaseResp() *idl.Resp {
 	return nil
 }
 
-func (m *GetCommunityResp) GetName() string {
+func (m *GetCommunityResp) GetCommunity() *CommunityCommon {
 	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *GetCommunityResp) GetProvince() string {
-	if m != nil {
-		return m.Province
-	}
-	return ""
-}
-
-func (m *GetCommunityResp) GetCity() string {
-	if m != nil {
-		return m.City
-	}
-	return ""
-}
-
-func (m *GetCommunityResp) GetRegion() string {
-	if m != nil {
-		return m.Region
-	}
-	return ""
-}
-
-func (m *GetCommunityResp) GetStreet() string {
-	if m != nil {
-		return m.Street
-	}
-	return ""
-}
-
-func (m *GetCommunityResp) GetCouncilID() int64 {
-	if m != nil {
-		return m.CouncilID
-	}
-	return 0
-}
-
-func (m *GetCommunityResp) GetOrgID() int64 {
-	if m != nil {
-		return m.OrgID
-	}
-	return 0
-}
-
-func (m *GetCommunityResp) GetHouseCount() int32 {
-	if m != nil {
-		return m.HouseCount
-	}
-	return 0
-}
-
-func (m *GetCommunityResp) GetCheckInCount() int32 {
-	if m != nil {
-		return m.CheckInCount
-	}
-	return 0
-}
-
-func (m *GetCommunityResp) GetBuildingArea() int32 {
-	if m != nil {
-		return m.BuildingArea
-	}
-	return 0
-}
-
-func (m *GetCommunityResp) GetGreeningArea() int32 {
-	if m != nil {
-		return m.GreeningArea
-	}
-	return 0
-}
-
-func (m *GetCommunityResp) GetLoc() []float32 {
-	if m != nil {
-		return m.Loc
+		return m.Community
 	}
 	return nil
-}
-
-func (m *GetCommunityResp) GetState() int32 {
-	if m != nil {
-		return m.State
-	}
-	return 0
-}
-
-func (m *GetCommunityResp) GetOperatorID() int64 {
-	if m != nil {
-		return m.OperatorID
-	}
-	return 0
 }
 
 func (m *GetCommunityResp) GetCreatedAt() int64 {
@@ -495,50 +430,1098 @@ func (m *GetCommunityResp) GetUpdatedAt() int64 {
 	return 0
 }
 
+type AssetCommon struct {
+	Serial               string   `protobuf:"bytes,1,opt,name=Serial,proto3" json:"Serial,omitempty"`
+	Category             int32    `protobuf:"varint,2,opt,name=Category,proto3" json:"Category,omitempty"`
+	State                int32    `protobuf:"varint,3,opt,name=State,proto3" json:"State,omitempty"`
+	CommunityID          int64    `protobuf:"varint,4,opt,name=CommunityID,proto3" json:"CommunityID,omitempty"`
+	Loc                  string   `protobuf:"bytes,5,opt,name=loc,proto3" json:"loc,omitempty"`
+	Brand                string   `protobuf:"bytes,6,opt,name=Brand,proto3" json:"Brand,omitempty"`
+	Desc                 string   `protobuf:"bytes,7,opt,name=Desc,proto3" json:"Desc,omitempty"`
+	OperatorID           int64    `protobuf:"varint,8,opt,name=OperatorID,proto3" json:"OperatorID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AssetCommon) Reset()         { *m = AssetCommon{} }
+func (m *AssetCommon) String() string { return proto.CompactTextString(m) }
+func (*AssetCommon) ProtoMessage()    {}
+func (*AssetCommon) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{7}
+}
+
+func (m *AssetCommon) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AssetCommon.Unmarshal(m, b)
+}
+func (m *AssetCommon) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AssetCommon.Marshal(b, m, deterministic)
+}
+func (m *AssetCommon) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AssetCommon.Merge(m, src)
+}
+func (m *AssetCommon) XXX_Size() int {
+	return xxx_messageInfo_AssetCommon.Size(m)
+}
+func (m *AssetCommon) XXX_DiscardUnknown() {
+	xxx_messageInfo_AssetCommon.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AssetCommon proto.InternalMessageInfo
+
+func (m *AssetCommon) GetSerial() string {
+	if m != nil {
+		return m.Serial
+	}
+	return ""
+}
+
+func (m *AssetCommon) GetCategory() int32 {
+	if m != nil {
+		return m.Category
+	}
+	return 0
+}
+
+func (m *AssetCommon) GetState() int32 {
+	if m != nil {
+		return m.State
+	}
+	return 0
+}
+
+func (m *AssetCommon) GetCommunityID() int64 {
+	if m != nil {
+		return m.CommunityID
+	}
+	return 0
+}
+
+func (m *AssetCommon) GetLoc() string {
+	if m != nil {
+		return m.Loc
+	}
+	return ""
+}
+
+func (m *AssetCommon) GetBrand() string {
+	if m != nil {
+		return m.Brand
+	}
+	return ""
+}
+
+func (m *AssetCommon) GetDesc() string {
+	if m != nil {
+		return m.Desc
+	}
+	return ""
+}
+
+func (m *AssetCommon) GetOperatorID() int64 {
+	if m != nil {
+		return m.OperatorID
+	}
+	return 0
+}
+
+type AddAssetReq struct {
+	Asset                *AssetCommon `protobuf:"bytes,1,opt,name=Asset,proto3" json:"Asset,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
+}
+
+func (m *AddAssetReq) Reset()         { *m = AddAssetReq{} }
+func (m *AddAssetReq) String() string { return proto.CompactTextString(m) }
+func (*AddAssetReq) ProtoMessage()    {}
+func (*AddAssetReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{8}
+}
+
+func (m *AddAssetReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddAssetReq.Unmarshal(m, b)
+}
+func (m *AddAssetReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddAssetReq.Marshal(b, m, deterministic)
+}
+func (m *AddAssetReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddAssetReq.Merge(m, src)
+}
+func (m *AddAssetReq) XXX_Size() int {
+	return xxx_messageInfo_AddAssetReq.Size(m)
+}
+func (m *AddAssetReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddAssetReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddAssetReq proto.InternalMessageInfo
+
+func (m *AddAssetReq) GetAsset() *AssetCommon {
+	if m != nil {
+		return m.Asset
+	}
+	return nil
+}
+
+type AddAssetResp struct {
+	BaseResp             *idl.Resp `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	AssetID              int64     `protobuf:"varint,2,opt,name=AssetID,proto3" json:"AssetID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *AddAssetResp) Reset()         { *m = AddAssetResp{} }
+func (m *AddAssetResp) String() string { return proto.CompactTextString(m) }
+func (*AddAssetResp) ProtoMessage()    {}
+func (*AddAssetResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{9}
+}
+
+func (m *AddAssetResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddAssetResp.Unmarshal(m, b)
+}
+func (m *AddAssetResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddAssetResp.Marshal(b, m, deterministic)
+}
+func (m *AddAssetResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddAssetResp.Merge(m, src)
+}
+func (m *AddAssetResp) XXX_Size() int {
+	return xxx_messageInfo_AddAssetResp.Size(m)
+}
+func (m *AddAssetResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddAssetResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddAssetResp proto.InternalMessageInfo
+
+func (m *AddAssetResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+func (m *AddAssetResp) GetAssetID() int64 {
+	if m != nil {
+		return m.AssetID
+	}
+	return 0
+}
+
+type DelAssetReq struct {
+	AssetID              int64    `protobuf:"varint,1,opt,name=AssetID,proto3" json:"AssetID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DelAssetReq) Reset()         { *m = DelAssetReq{} }
+func (m *DelAssetReq) String() string { return proto.CompactTextString(m) }
+func (*DelAssetReq) ProtoMessage()    {}
+func (*DelAssetReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{10}
+}
+
+func (m *DelAssetReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DelAssetReq.Unmarshal(m, b)
+}
+func (m *DelAssetReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DelAssetReq.Marshal(b, m, deterministic)
+}
+func (m *DelAssetReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DelAssetReq.Merge(m, src)
+}
+func (m *DelAssetReq) XXX_Size() int {
+	return xxx_messageInfo_DelAssetReq.Size(m)
+}
+func (m *DelAssetReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DelAssetReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DelAssetReq proto.InternalMessageInfo
+
+func (m *DelAssetReq) GetAssetID() int64 {
+	if m != nil {
+		return m.AssetID
+	}
+	return 0
+}
+
+type DelAssetResp struct {
+	BaseResp             *idl.Resp `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *DelAssetResp) Reset()         { *m = DelAssetResp{} }
+func (m *DelAssetResp) String() string { return proto.CompactTextString(m) }
+func (*DelAssetResp) ProtoMessage()    {}
+func (*DelAssetResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{11}
+}
+
+func (m *DelAssetResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DelAssetResp.Unmarshal(m, b)
+}
+func (m *DelAssetResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DelAssetResp.Marshal(b, m, deterministic)
+}
+func (m *DelAssetResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DelAssetResp.Merge(m, src)
+}
+func (m *DelAssetResp) XXX_Size() int {
+	return xxx_messageInfo_DelAssetResp.Size(m)
+}
+func (m *DelAssetResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DelAssetResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DelAssetResp proto.InternalMessageInfo
+
+func (m *DelAssetResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+type GetAssetReq struct {
+	AssetID              int64    `protobuf:"varint,1,opt,name=AssetID,proto3" json:"AssetID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetAssetReq) Reset()         { *m = GetAssetReq{} }
+func (m *GetAssetReq) String() string { return proto.CompactTextString(m) }
+func (*GetAssetReq) ProtoMessage()    {}
+func (*GetAssetReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{12}
+}
+
+func (m *GetAssetReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetAssetReq.Unmarshal(m, b)
+}
+func (m *GetAssetReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetAssetReq.Marshal(b, m, deterministic)
+}
+func (m *GetAssetReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAssetReq.Merge(m, src)
+}
+func (m *GetAssetReq) XXX_Size() int {
+	return xxx_messageInfo_GetAssetReq.Size(m)
+}
+func (m *GetAssetReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAssetReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAssetReq proto.InternalMessageInfo
+
+func (m *GetAssetReq) GetAssetID() int64 {
+	if m != nil {
+		return m.AssetID
+	}
+	return 0
+}
+
+type GetAssetResp struct {
+	BaseResp             *idl.Resp    `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	Asset                *AssetCommon `protobuf:"bytes,2,opt,name=Asset,proto3" json:"Asset,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
+}
+
+func (m *GetAssetResp) Reset()         { *m = GetAssetResp{} }
+func (m *GetAssetResp) String() string { return proto.CompactTextString(m) }
+func (*GetAssetResp) ProtoMessage()    {}
+func (*GetAssetResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{13}
+}
+
+func (m *GetAssetResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetAssetResp.Unmarshal(m, b)
+}
+func (m *GetAssetResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetAssetResp.Marshal(b, m, deterministic)
+}
+func (m *GetAssetResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAssetResp.Merge(m, src)
+}
+func (m *GetAssetResp) XXX_Size() int {
+	return xxx_messageInfo_GetAssetResp.Size(m)
+}
+func (m *GetAssetResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAssetResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAssetResp proto.InternalMessageInfo
+
+func (m *GetAssetResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+func (m *GetAssetResp) GetAsset() *AssetCommon {
+	if m != nil {
+		return m.Asset
+	}
+	return nil
+}
+
+type BuildingCommon struct {
+	Name                 string    `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
+	CommunityID          int64     `protobuf:"varint,2,opt,name=CommunityID,proto3" json:"CommunityID,omitempty"`
+	Period               int32     `protobuf:"varint,3,opt,name=Period,proto3" json:"Period,omitempty"`
+	ElevatorID           []int64   `protobuf:"varint,4,rep,packed,name=ElevatorID,proto3" json:"ElevatorID,omitempty"`
+	Loc                  []float32 `protobuf:"fixed32,5,rep,packed,name=Loc,proto3" json:"Loc,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *BuildingCommon) Reset()         { *m = BuildingCommon{} }
+func (m *BuildingCommon) String() string { return proto.CompactTextString(m) }
+func (*BuildingCommon) ProtoMessage()    {}
+func (*BuildingCommon) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{14}
+}
+
+func (m *BuildingCommon) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BuildingCommon.Unmarshal(m, b)
+}
+func (m *BuildingCommon) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BuildingCommon.Marshal(b, m, deterministic)
+}
+func (m *BuildingCommon) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BuildingCommon.Merge(m, src)
+}
+func (m *BuildingCommon) XXX_Size() int {
+	return xxx_messageInfo_BuildingCommon.Size(m)
+}
+func (m *BuildingCommon) XXX_DiscardUnknown() {
+	xxx_messageInfo_BuildingCommon.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BuildingCommon proto.InternalMessageInfo
+
+func (m *BuildingCommon) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *BuildingCommon) GetCommunityID() int64 {
+	if m != nil {
+		return m.CommunityID
+	}
+	return 0
+}
+
+func (m *BuildingCommon) GetPeriod() int32 {
+	if m != nil {
+		return m.Period
+	}
+	return 0
+}
+
+func (m *BuildingCommon) GetElevatorID() []int64 {
+	if m != nil {
+		return m.ElevatorID
+	}
+	return nil
+}
+
+func (m *BuildingCommon) GetLoc() []float32 {
+	if m != nil {
+		return m.Loc
+	}
+	return nil
+}
+
+type AddBuildingReq struct {
+	Building             *BuildingCommon `protobuf:"bytes,1,opt,name=Building,proto3" json:"Building,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *AddBuildingReq) Reset()         { *m = AddBuildingReq{} }
+func (m *AddBuildingReq) String() string { return proto.CompactTextString(m) }
+func (*AddBuildingReq) ProtoMessage()    {}
+func (*AddBuildingReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{15}
+}
+
+func (m *AddBuildingReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddBuildingReq.Unmarshal(m, b)
+}
+func (m *AddBuildingReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddBuildingReq.Marshal(b, m, deterministic)
+}
+func (m *AddBuildingReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddBuildingReq.Merge(m, src)
+}
+func (m *AddBuildingReq) XXX_Size() int {
+	return xxx_messageInfo_AddBuildingReq.Size(m)
+}
+func (m *AddBuildingReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddBuildingReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddBuildingReq proto.InternalMessageInfo
+
+func (m *AddBuildingReq) GetBuilding() *BuildingCommon {
+	if m != nil {
+		return m.Building
+	}
+	return nil
+}
+
+type AddBuildingResp struct {
+	BaseResp             *idl.Resp `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	BuildingID           int64     `protobuf:"varint,2,opt,name=BuildingID,proto3" json:"BuildingID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *AddBuildingResp) Reset()         { *m = AddBuildingResp{} }
+func (m *AddBuildingResp) String() string { return proto.CompactTextString(m) }
+func (*AddBuildingResp) ProtoMessage()    {}
+func (*AddBuildingResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{16}
+}
+
+func (m *AddBuildingResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddBuildingResp.Unmarshal(m, b)
+}
+func (m *AddBuildingResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddBuildingResp.Marshal(b, m, deterministic)
+}
+func (m *AddBuildingResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddBuildingResp.Merge(m, src)
+}
+func (m *AddBuildingResp) XXX_Size() int {
+	return xxx_messageInfo_AddBuildingResp.Size(m)
+}
+func (m *AddBuildingResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddBuildingResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddBuildingResp proto.InternalMessageInfo
+
+func (m *AddBuildingResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+func (m *AddBuildingResp) GetBuildingID() int64 {
+	if m != nil {
+		return m.BuildingID
+	}
+	return 0
+}
+
+type DelBuilingReq struct {
+	BuilingID            int64    `protobuf:"varint,1,opt,name=BuilingID,proto3" json:"BuilingID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DelBuilingReq) Reset()         { *m = DelBuilingReq{} }
+func (m *DelBuilingReq) String() string { return proto.CompactTextString(m) }
+func (*DelBuilingReq) ProtoMessage()    {}
+func (*DelBuilingReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{17}
+}
+
+func (m *DelBuilingReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DelBuilingReq.Unmarshal(m, b)
+}
+func (m *DelBuilingReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DelBuilingReq.Marshal(b, m, deterministic)
+}
+func (m *DelBuilingReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DelBuilingReq.Merge(m, src)
+}
+func (m *DelBuilingReq) XXX_Size() int {
+	return xxx_messageInfo_DelBuilingReq.Size(m)
+}
+func (m *DelBuilingReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DelBuilingReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DelBuilingReq proto.InternalMessageInfo
+
+func (m *DelBuilingReq) GetBuilingID() int64 {
+	if m != nil {
+		return m.BuilingID
+	}
+	return 0
+}
+
+type DelBuilingResp struct {
+	BaseResp             *idl.Resp `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *DelBuilingResp) Reset()         { *m = DelBuilingResp{} }
+func (m *DelBuilingResp) String() string { return proto.CompactTextString(m) }
+func (*DelBuilingResp) ProtoMessage()    {}
+func (*DelBuilingResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{18}
+}
+
+func (m *DelBuilingResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DelBuilingResp.Unmarshal(m, b)
+}
+func (m *DelBuilingResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DelBuilingResp.Marshal(b, m, deterministic)
+}
+func (m *DelBuilingResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DelBuilingResp.Merge(m, src)
+}
+func (m *DelBuilingResp) XXX_Size() int {
+	return xxx_messageInfo_DelBuilingResp.Size(m)
+}
+func (m *DelBuilingResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DelBuilingResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DelBuilingResp proto.InternalMessageInfo
+
+func (m *DelBuilingResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+type GetBuildingReq struct {
+	ID                   int64    `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetBuildingReq) Reset()         { *m = GetBuildingReq{} }
+func (m *GetBuildingReq) String() string { return proto.CompactTextString(m) }
+func (*GetBuildingReq) ProtoMessage()    {}
+func (*GetBuildingReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{19}
+}
+
+func (m *GetBuildingReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetBuildingReq.Unmarshal(m, b)
+}
+func (m *GetBuildingReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetBuildingReq.Marshal(b, m, deterministic)
+}
+func (m *GetBuildingReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetBuildingReq.Merge(m, src)
+}
+func (m *GetBuildingReq) XXX_Size() int {
+	return xxx_messageInfo_GetBuildingReq.Size(m)
+}
+func (m *GetBuildingReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetBuildingReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetBuildingReq proto.InternalMessageInfo
+
+func (m *GetBuildingReq) GetID() int64 {
+	if m != nil {
+		return m.ID
+	}
+	return 0
+}
+
+type GetBuildingResp struct {
+	BaseResp             *idl.Resp       `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	Building             *BuildingCommon `protobuf:"bytes,2,opt,name=Building,proto3" json:"Building,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *GetBuildingResp) Reset()         { *m = GetBuildingResp{} }
+func (m *GetBuildingResp) String() string { return proto.CompactTextString(m) }
+func (*GetBuildingResp) ProtoMessage()    {}
+func (*GetBuildingResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{20}
+}
+
+func (m *GetBuildingResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetBuildingResp.Unmarshal(m, b)
+}
+func (m *GetBuildingResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetBuildingResp.Marshal(b, m, deterministic)
+}
+func (m *GetBuildingResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetBuildingResp.Merge(m, src)
+}
+func (m *GetBuildingResp) XXX_Size() int {
+	return xxx_messageInfo_GetBuildingResp.Size(m)
+}
+func (m *GetBuildingResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetBuildingResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetBuildingResp proto.InternalMessageInfo
+
+func (m *GetBuildingResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+func (m *GetBuildingResp) GetBuilding() *BuildingCommon {
+	if m != nil {
+		return m.Building
+	}
+	return nil
+}
+
+type HouseCommon struct {
+	BuildingID           int64    `protobuf:"varint,1,opt,name=BuildingID,proto3" json:"BuildingID,omitempty"`
+	Unit                 string   `protobuf:"bytes,2,opt,name=Unit,proto3" json:"Unit,omitempty"`
+	Acreage              float32  `protobuf:"fixed32,3,opt,name=Acreage,proto3" json:"Acreage,omitempty"`
+	State                int32    `protobuf:"varint,4,opt,name=State,proto3" json:"State,omitempty"`
+	Rental               int32    `protobuf:"varint,5,opt,name=Rental,proto3" json:"Rental,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *HouseCommon) Reset()         { *m = HouseCommon{} }
+func (m *HouseCommon) String() string { return proto.CompactTextString(m) }
+func (*HouseCommon) ProtoMessage()    {}
+func (*HouseCommon) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{21}
+}
+
+func (m *HouseCommon) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HouseCommon.Unmarshal(m, b)
+}
+func (m *HouseCommon) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HouseCommon.Marshal(b, m, deterministic)
+}
+func (m *HouseCommon) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HouseCommon.Merge(m, src)
+}
+func (m *HouseCommon) XXX_Size() int {
+	return xxx_messageInfo_HouseCommon.Size(m)
+}
+func (m *HouseCommon) XXX_DiscardUnknown() {
+	xxx_messageInfo_HouseCommon.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_HouseCommon proto.InternalMessageInfo
+
+func (m *HouseCommon) GetBuildingID() int64 {
+	if m != nil {
+		return m.BuildingID
+	}
+	return 0
+}
+
+func (m *HouseCommon) GetUnit() string {
+	if m != nil {
+		return m.Unit
+	}
+	return ""
+}
+
+func (m *HouseCommon) GetAcreage() float32 {
+	if m != nil {
+		return m.Acreage
+	}
+	return 0
+}
+
+func (m *HouseCommon) GetState() int32 {
+	if m != nil {
+		return m.State
+	}
+	return 0
+}
+
+func (m *HouseCommon) GetRental() int32 {
+	if m != nil {
+		return m.Rental
+	}
+	return 0
+}
+
+type AddHouseReq struct {
+	House                *HouseCommon `protobuf:"bytes,1,opt,name=House,proto3" json:"House,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
+}
+
+func (m *AddHouseReq) Reset()         { *m = AddHouseReq{} }
+func (m *AddHouseReq) String() string { return proto.CompactTextString(m) }
+func (*AddHouseReq) ProtoMessage()    {}
+func (*AddHouseReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{22}
+}
+
+func (m *AddHouseReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddHouseReq.Unmarshal(m, b)
+}
+func (m *AddHouseReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddHouseReq.Marshal(b, m, deterministic)
+}
+func (m *AddHouseReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddHouseReq.Merge(m, src)
+}
+func (m *AddHouseReq) XXX_Size() int {
+	return xxx_messageInfo_AddHouseReq.Size(m)
+}
+func (m *AddHouseReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddHouseReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddHouseReq proto.InternalMessageInfo
+
+func (m *AddHouseReq) GetHouse() *HouseCommon {
+	if m != nil {
+		return m.House
+	}
+	return nil
+}
+
+type AddHouseResp struct {
+	BaseResp             *idl.Resp `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *AddHouseResp) Reset()         { *m = AddHouseResp{} }
+func (m *AddHouseResp) String() string { return proto.CompactTextString(m) }
+func (*AddHouseResp) ProtoMessage()    {}
+func (*AddHouseResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{23}
+}
+
+func (m *AddHouseResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddHouseResp.Unmarshal(m, b)
+}
+func (m *AddHouseResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddHouseResp.Marshal(b, m, deterministic)
+}
+func (m *AddHouseResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddHouseResp.Merge(m, src)
+}
+func (m *AddHouseResp) XXX_Size() int {
+	return xxx_messageInfo_AddHouseResp.Size(m)
+}
+func (m *AddHouseResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddHouseResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddHouseResp proto.InternalMessageInfo
+
+func (m *AddHouseResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+type DelHouseReq struct {
+	ID                   int64    `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DelHouseReq) Reset()         { *m = DelHouseReq{} }
+func (m *DelHouseReq) String() string { return proto.CompactTextString(m) }
+func (*DelHouseReq) ProtoMessage()    {}
+func (*DelHouseReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{24}
+}
+
+func (m *DelHouseReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DelHouseReq.Unmarshal(m, b)
+}
+func (m *DelHouseReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DelHouseReq.Marshal(b, m, deterministic)
+}
+func (m *DelHouseReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DelHouseReq.Merge(m, src)
+}
+func (m *DelHouseReq) XXX_Size() int {
+	return xxx_messageInfo_DelHouseReq.Size(m)
+}
+func (m *DelHouseReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DelHouseReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DelHouseReq proto.InternalMessageInfo
+
+func (m *DelHouseReq) GetID() int64 {
+	if m != nil {
+		return m.ID
+	}
+	return 0
+}
+
+type DelHouseResp struct {
+	BaseResp             *idl.Resp `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *DelHouseResp) Reset()         { *m = DelHouseResp{} }
+func (m *DelHouseResp) String() string { return proto.CompactTextString(m) }
+func (*DelHouseResp) ProtoMessage()    {}
+func (*DelHouseResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{25}
+}
+
+func (m *DelHouseResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DelHouseResp.Unmarshal(m, b)
+}
+func (m *DelHouseResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DelHouseResp.Marshal(b, m, deterministic)
+}
+func (m *DelHouseResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DelHouseResp.Merge(m, src)
+}
+func (m *DelHouseResp) XXX_Size() int {
+	return xxx_messageInfo_DelHouseResp.Size(m)
+}
+func (m *DelHouseResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DelHouseResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DelHouseResp proto.InternalMessageInfo
+
+func (m *DelHouseResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+type GetHouseReq struct {
+	ID                   int64    `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetHouseReq) Reset()         { *m = GetHouseReq{} }
+func (m *GetHouseReq) String() string { return proto.CompactTextString(m) }
+func (*GetHouseReq) ProtoMessage()    {}
+func (*GetHouseReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{26}
+}
+
+func (m *GetHouseReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetHouseReq.Unmarshal(m, b)
+}
+func (m *GetHouseReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetHouseReq.Marshal(b, m, deterministic)
+}
+func (m *GetHouseReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetHouseReq.Merge(m, src)
+}
+func (m *GetHouseReq) XXX_Size() int {
+	return xxx_messageInfo_GetHouseReq.Size(m)
+}
+func (m *GetHouseReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetHouseReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetHouseReq proto.InternalMessageInfo
+
+func (m *GetHouseReq) GetID() int64 {
+	if m != nil {
+		return m.ID
+	}
+	return 0
+}
+
+type GetHouseResp struct {
+	BaseResp             *idl.Resp    `protobuf:"bytes,1,opt,name=BaseResp,proto3" json:"BaseResp,omitempty"`
+	House                *HouseCommon `protobuf:"bytes,2,opt,name=House,proto3" json:"House,omitempty"`
+	CreatedAt            int64        `protobuf:"varint,3,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty"`
+	UpdatedAt            int64        `protobuf:"varint,4,opt,name=UpdatedAt,proto3" json:"UpdatedAt,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
+}
+
+func (m *GetHouseResp) Reset()         { *m = GetHouseResp{} }
+func (m *GetHouseResp) String() string { return proto.CompactTextString(m) }
+func (*GetHouseResp) ProtoMessage()    {}
+func (*GetHouseResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f140d5b28dddb141, []int{27}
+}
+
+func (m *GetHouseResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetHouseResp.Unmarshal(m, b)
+}
+func (m *GetHouseResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetHouseResp.Marshal(b, m, deterministic)
+}
+func (m *GetHouseResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetHouseResp.Merge(m, src)
+}
+func (m *GetHouseResp) XXX_Size() int {
+	return xxx_messageInfo_GetHouseResp.Size(m)
+}
+func (m *GetHouseResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetHouseResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetHouseResp proto.InternalMessageInfo
+
+func (m *GetHouseResp) GetBaseResp() *idl.Resp {
+	if m != nil {
+		return m.BaseResp
+	}
+	return nil
+}
+
+func (m *GetHouseResp) GetHouse() *HouseCommon {
+	if m != nil {
+		return m.House
+	}
+	return nil
+}
+
+func (m *GetHouseResp) GetCreatedAt() int64 {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return 0
+}
+
+func (m *GetHouseResp) GetUpdatedAt() int64 {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return 0
+}
+
 func init() {
+	proto.RegisterType((*CommunityCommon)(nil), "dayan.community.srv.info.CommunityCommon")
 	proto.RegisterType((*AddCommunityReq)(nil), "dayan.community.srv.info.AddCommunityReq")
 	proto.RegisterType((*AddCommunityResp)(nil), "dayan.community.srv.info.AddCommunityResp")
 	proto.RegisterType((*DelCommunityReq)(nil), "dayan.community.srv.info.DelCommunityReq")
 	proto.RegisterType((*DelCommunityResp)(nil), "dayan.community.srv.info.DelCommunityResp")
 	proto.RegisterType((*GetCommunityReq)(nil), "dayan.community.srv.info.GetCommunityReq")
 	proto.RegisterType((*GetCommunityResp)(nil), "dayan.community.srv.info.GetCommunityResp")
+	proto.RegisterType((*AssetCommon)(nil), "dayan.community.srv.info.AssetCommon")
+	proto.RegisterType((*AddAssetReq)(nil), "dayan.community.srv.info.AddAssetReq")
+	proto.RegisterType((*AddAssetResp)(nil), "dayan.community.srv.info.AddAssetResp")
+	proto.RegisterType((*DelAssetReq)(nil), "dayan.community.srv.info.DelAssetReq")
+	proto.RegisterType((*DelAssetResp)(nil), "dayan.community.srv.info.DelAssetResp")
+	proto.RegisterType((*GetAssetReq)(nil), "dayan.community.srv.info.GetAssetReq")
+	proto.RegisterType((*GetAssetResp)(nil), "dayan.community.srv.info.GetAssetResp")
+	proto.RegisterType((*BuildingCommon)(nil), "dayan.community.srv.info.BuildingCommon")
+	proto.RegisterType((*AddBuildingReq)(nil), "dayan.community.srv.info.AddBuildingReq")
+	proto.RegisterType((*AddBuildingResp)(nil), "dayan.community.srv.info.AddBuildingResp")
+	proto.RegisterType((*DelBuilingReq)(nil), "dayan.community.srv.info.DelBuilingReq")
+	proto.RegisterType((*DelBuilingResp)(nil), "dayan.community.srv.info.DelBuilingResp")
+	proto.RegisterType((*GetBuildingReq)(nil), "dayan.community.srv.info.GetBuildingReq")
+	proto.RegisterType((*GetBuildingResp)(nil), "dayan.community.srv.info.GetBuildingResp")
+	proto.RegisterType((*HouseCommon)(nil), "dayan.community.srv.info.HouseCommon")
+	proto.RegisterType((*AddHouseReq)(nil), "dayan.community.srv.info.AddHouseReq")
+	proto.RegisterType((*AddHouseResp)(nil), "dayan.community.srv.info.AddHouseResp")
+	proto.RegisterType((*DelHouseReq)(nil), "dayan.community.srv.info.DelHouseReq")
+	proto.RegisterType((*DelHouseResp)(nil), "dayan.community.srv.info.DelHouseResp")
+	proto.RegisterType((*GetHouseReq)(nil), "dayan.community.srv.info.GetHouseReq")
+	proto.RegisterType((*GetHouseResp)(nil), "dayan.community.srv.info.GetHouseResp")
 }
 
 func init() { proto.RegisterFile("info.proto", fileDescriptor_f140d5b28dddb141) }
 
 var fileDescriptor_f140d5b28dddb141 = []byte{
-	// 513 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x94, 0xc1, 0x6e, 0xda, 0x40,
-	0x10, 0x86, 0x65, 0x0c, 0x04, 0x06, 0x13, 0xdc, 0x55, 0x55, 0xad, 0x50, 0x55, 0x59, 0x1c, 0x2a,
-	0xda, 0x83, 0x0f, 0xc9, 0xad, 0x37, 0x82, 0xa5, 0xd4, 0x52, 0xd5, 0x54, 0x8e, 0x7a, 0xeb, 0xc5,
-	0xb1, 0x27, 0xd4, 0x2a, 0xec, 0xba, 0xeb, 0x25, 0x12, 0x0f, 0xd1, 0xb7, 0xea, 0x13, 0xf5, 0x09,
-	0xaa, 0xdd, 0x05, 0x62, 0x3b, 0x31, 0x81, 0xdb, 0xce, 0x3f, 0xff, 0x68, 0xec, 0x9d, 0x6f, 0x16,
-	0x20, 0x63, 0xf7, 0xdc, 0xcf, 0x05, 0x97, 0x9c, 0xd0, 0x34, 0xde, 0xc4, 0xcc, 0x4f, 0xf8, 0x6a,
-	0xb5, 0x66, 0x99, 0xdc, 0xf8, 0x85, 0x78, 0xf0, 0x55, 0x7e, 0x0c, 0x77, 0x71, 0x81, 0xc6, 0x35,
-	0xf9, 0x63, 0xc3, 0x68, 0x96, 0xa6, 0xf3, 0x9d, 0x2b, 0xc2, 0xdf, 0x84, 0x40, 0xfb, 0x6b, 0xbc,
-	0x42, 0x6a, 0x79, 0xd6, 0xb4, 0x1f, 0xe9, 0x33, 0x19, 0x43, 0xef, 0x9b, 0xe0, 0x0f, 0x19, 0x4b,
-	0x90, 0xb6, 0xb4, 0xbe, 0x8f, 0x95, 0x7f, 0x9e, 0xc9, 0x0d, 0xb5, 0x8d, 0x5f, 0x9d, 0xc9, 0x1b,
-	0xe8, 0x46, 0xb8, 0xc8, 0x38, 0xa3, 0x6d, 0xad, 0x6e, 0x23, 0xa5, 0xdf, 0x4a, 0x81, 0x28, 0x69,
-	0xc7, 0xe8, 0x26, 0x22, 0x6f, 0xa1, 0x3f, 0xe7, 0x6b, 0x96, 0x64, 0xcb, 0x30, 0xa0, 0x5d, 0xcf,
-	0x9a, 0xda, 0xd1, 0xa3, 0x40, 0x5e, 0x43, 0xe7, 0x46, 0x2c, 0xc2, 0x80, 0x9e, 0xe9, 0x8c, 0x09,
-	0xc8, 0x3b, 0x80, 0xcf, 0x7c, 0x5d, 0xa0, 0xf2, 0x49, 0xda, 0xf3, 0xac, 0x69, 0x27, 0x2a, 0x29,
-	0x64, 0x02, 0xce, 0xfc, 0x27, 0x26, 0xbf, 0x42, 0x66, 0x1c, 0x7d, 0xed, 0xa8, 0x68, 0xca, 0x73,
-	0xb5, 0xce, 0x96, 0x69, 0xc6, 0x16, 0x33, 0x81, 0x31, 0x05, 0xe3, 0x29, 0x6b, 0xca, 0x73, 0x2d,
-	0x10, 0xd9, 0xce, 0x33, 0x30, 0x9e, 0xb2, 0x46, 0x5c, 0xb0, 0xbf, 0xf0, 0x84, 0x3a, 0x9e, 0x3d,
-	0x6d, 0x45, 0xea, 0xa8, 0xbe, 0xf9, 0x56, 0xc6, 0x12, 0xe9, 0x50, 0xdb, 0x4d, 0xa0, 0xbe, 0xf9,
-	0x26, 0x47, 0x11, 0x4b, 0x2e, 0xc2, 0x80, 0x9e, 0xeb, 0xdf, 0x29, 0x29, 0x93, 0x1f, 0xe0, 0x56,
-	0xc7, 0x51, 0xe4, 0xe4, 0x3d, 0xf4, 0xae, 0xe2, 0x02, 0xd5, 0x59, 0xcf, 0x64, 0x70, 0x01, 0xbe,
-	0x1e, 0xa1, 0x52, 0xa2, 0x7d, 0x8e, 0x78, 0x30, 0xd8, 0x17, 0x86, 0x81, 0x1e, 0x93, 0x1d, 0x95,
-	0xa5, 0xc9, 0x25, 0x8c, 0x02, 0x5c, 0x56, 0x86, 0x5d, 0x2b, 0xb2, 0x9e, 0x16, 0x7d, 0x02, 0xb7,
-	0x5a, 0x74, 0xfc, 0x27, 0xa9, 0x86, 0xd7, 0x28, 0x4f, 0x6c, 0xf8, 0xcf, 0x06, 0xb7, 0x5a, 0x75,
-	0xc2, 0x25, 0xec, 0xe0, 0x6d, 0x35, 0xc0, 0x6b, 0x37, 0xc0, 0xdb, 0x7e, 0x16, 0xde, 0x4e, 0x03,
-	0xbc, 0xdd, 0x66, 0x78, 0xcf, 0x1a, 0xe1, 0xed, 0x35, 0xc3, 0xdb, 0x7f, 0x11, 0x5e, 0x38, 0x02,
-	0xde, 0xc1, 0x11, 0xf0, 0x3a, 0xcd, 0xf0, 0x0e, 0x9f, 0x81, 0xf7, 0xbc, 0x19, 0xde, 0x51, 0x1d,
-	0x5e, 0x7d, 0x0f, 0x02, 0x63, 0x89, 0xe9, 0x4c, 0x52, 0x77, 0x7b, 0x0f, 0x3b, 0x41, 0x65, 0xbf,
-	0xe7, 0xe9, 0x36, 0xfb, 0xca, 0x64, 0xf7, 0xc2, 0xc5, 0xdf, 0x16, 0x0c, 0x1f, 0x21, 0x60, 0xf7,
-	0x9c, 0x20, 0x38, 0xe5, 0x55, 0x20, 0x1f, 0xfc, 0xa6, 0x17, 0xcd, 0xaf, 0xbd, 0x60, 0xe3, 0x8f,
-	0xc7, 0x5a, 0x8b, 0x5c, 0xb5, 0x29, 0xe3, 0x7d, 0xa8, 0x4d, 0x6d, 0x77, 0x0e, 0xb5, 0x79, 0xb2,
-	0x31, 0x08, 0x4e, 0x99, 0xe9, 0x43, 0x6d, 0x6a, 0x1b, 0x73, 0xa8, 0x4d, 0x7d, 0x4d, 0xee, 0xba,
-	0xfa, 0x59, 0xbf, 0xfc, 0x1f, 0x00, 0x00, 0xff, 0xff, 0x68, 0x12, 0x27, 0x0b, 0x0a, 0x06, 0x00,
-	0x00,
+	// 1024 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x57, 0x51, 0x6b, 0xe3, 0x46,
+	0x10, 0x46, 0xb2, 0x9d, 0xb3, 0xc7, 0x8e, 0x13, 0x96, 0x52, 0x84, 0xb9, 0x1e, 0x46, 0x70, 0x17,
+	0xa7, 0x50, 0x3f, 0xdc, 0x41, 0x29, 0xed, 0x93, 0x63, 0x15, 0xd7, 0xa5, 0xf4, 0xc2, 0x1e, 0x57,
+	0x48, 0xe9, 0x8b, 0x62, 0xed, 0xb9, 0xa2, 0x8a, 0xe4, 0x4a, 0x9b, 0x40, 0x9e, 0xfa, 0xdc, 0x87,
+	0x42, 0xfb, 0x4b, 0xfa, 0x13, 0xfa, 0x2b, 0xfa, 0x7f, 0xca, 0xce, 0xee, 0x4a, 0x2b, 0x99, 0xc8,
+	0x92, 0xfb, 0xb6, 0x33, 0x9a, 0x99, 0xdd, 0x99, 0xf9, 0xf6, 0x9b, 0x15, 0x40, 0x18, 0x7f, 0x48,
+	0xe6, 0xbb, 0x34, 0xe1, 0x09, 0x71, 0x02, 0xff, 0xd1, 0x8f, 0xe7, 0x9b, 0xe4, 0xee, 0xee, 0x3e,
+	0x0e, 0xf9, 0xe3, 0x3c, 0x4b, 0x1f, 0xe6, 0xe2, 0xfb, 0x04, 0x6e, 0xfd, 0x8c, 0x49, 0x2b, 0xf7,
+	0x8f, 0x0e, 0x9c, 0x2d, 0xb5, 0x89, 0x58, 0x24, 0x31, 0x21, 0xd0, 0xfd, 0xde, 0xbf, 0x63, 0x8e,
+	0x35, 0xb5, 0x66, 0x03, 0x8a, 0x6b, 0x32, 0x81, 0xfe, 0x75, 0x9a, 0x3c, 0x84, 0xf1, 0x86, 0x39,
+	0x36, 0xea, 0x73, 0x59, 0xd8, 0x2f, 0x43, 0xfe, 0xe8, 0x74, 0xa4, 0xbd, 0x58, 0x93, 0x8f, 0xe1,
+	0x84, 0xb2, 0x6d, 0x98, 0xc4, 0x4e, 0x17, 0xb5, 0x4a, 0x12, 0xfa, 0x77, 0x3c, 0x65, 0x8c, 0x3b,
+	0x3d, 0xa9, 0x97, 0x12, 0x79, 0x0e, 0x83, 0x65, 0x72, 0x1f, 0x6f, 0xc2, 0x68, 0xed, 0x39, 0x27,
+	0x53, 0x6b, 0xd6, 0xa1, 0x85, 0x82, 0x7c, 0x04, 0xbd, 0xb7, 0xe9, 0x76, 0xed, 0x39, 0xcf, 0xf0,
+	0x8b, 0x14, 0xc8, 0x0b, 0x80, 0x6f, 0x92, 0xfb, 0x8c, 0x09, 0x3b, 0xee, 0xf4, 0xa7, 0xd6, 0xac,
+	0x47, 0x0d, 0x0d, 0x71, 0x61, 0xb4, 0xfc, 0x99, 0x6d, 0x7e, 0x59, 0xc7, 0xd2, 0x62, 0x80, 0x16,
+	0x25, 0x9d, 0xb0, 0xb9, 0xba, 0x0f, 0xa3, 0x20, 0x8c, 0xb7, 0x8b, 0x94, 0xf9, 0x0e, 0x48, 0x1b,
+	0x53, 0x27, 0x6c, 0x56, 0x29, 0x63, 0xb1, 0xb6, 0x19, 0x4a, 0x1b, 0x53, 0x47, 0xce, 0xa1, 0xf3,
+	0x5d, 0xb2, 0x71, 0x46, 0xd3, 0xce, 0xcc, 0xa6, 0x62, 0x29, 0xce, 0xfc, 0x8e, 0xfb, 0x9c, 0x39,
+	0xa7, 0x68, 0x2e, 0x05, 0x71, 0xe6, 0xb7, 0x3b, 0x96, 0xfa, 0x3c, 0x49, 0xd7, 0x9e, 0x33, 0xc6,
+	0x74, 0x0c, 0x8d, 0xfb, 0x23, 0x9c, 0x2d, 0x82, 0x20, 0xef, 0x08, 0x65, 0xbf, 0x92, 0x95, 0x28,
+	0x8d, 0x92, 0xb1, 0x27, 0xc3, 0xd7, 0x97, 0xf3, 0xa7, 0x9a, 0x3b, 0xaf, 0x34, 0x93, 0x16, 0xbe,
+	0xee, 0x4f, 0x70, 0x5e, 0x8e, 0x9d, 0xed, 0xc8, 0x2b, 0xe8, 0x5f, 0xf9, 0x19, 0x13, 0x6b, 0x15,
+	0x1b, 0xe6, 0x08, 0x0f, 0xa1, 0xa1, 0xf9, 0x37, 0x32, 0x85, 0x61, 0xee, 0xb8, 0xf6, 0x10, 0x02,
+	0x1d, 0x6a, 0xaa, 0xdc, 0x37, 0x70, 0xe6, 0xb1, 0xa8, 0x74, 0xf2, 0x8a, 0x93, 0xb5, 0xef, 0xf4,
+	0x25, 0x9c, 0x97, 0x9d, 0x9a, 0x1f, 0x49, 0x6c, 0xb8, 0x62, 0xbc, 0xe5, 0x86, 0xff, 0x58, 0x70,
+	0x5e, 0xf6, 0x6a, 0x51, 0x84, 0x52, 0x27, 0xec, 0xe3, 0x3b, 0x81, 0x68, 0x4f, 0x99, 0xcf, 0x59,
+	0xb0, 0xe0, 0x78, 0x6d, 0x04, 0xda, 0xb5, 0x42, 0x7c, 0x7d, 0xbf, 0x0b, 0xd4, 0xd7, 0xae, 0xfc,
+	0x9a, 0x2b, 0xdc, 0x7f, 0x2d, 0x18, 0x2e, 0xb2, 0x4c, 0xe6, 0xa0, 0x6e, 0x14, 0x4b, 0x43, 0x3f,
+	0x52, 0xf7, 0x55, 0x49, 0xe2, 0xc6, 0x2e, 0x7d, 0xce, 0xb6, 0x49, 0x2a, 0xcf, 0xda, 0xa3, 0xb9,
+	0x5c, 0x60, 0xb3, 0x63, 0x62, 0xb3, 0x52, 0xbd, 0xee, 0x5e, 0xf5, 0x04, 0xca, 0xa3, 0x64, 0xa3,
+	0xae, 0xae, 0x58, 0x8a, 0x48, 0x57, 0xa9, 0x1f, 0x07, 0x78, 0x67, 0x07, 0x54, 0x0a, 0x82, 0x11,
+	0x3c, 0x96, 0x6d, 0xf0, 0xba, 0x0e, 0x28, 0xae, 0x2b, 0xc8, 0xef, 0xef, 0x21, 0xff, 0x5b, 0x18,
+	0x2e, 0x82, 0x00, 0x33, 0x13, 0xad, 0xfc, 0x0a, 0x7a, 0xb8, 0x56, 0x0d, 0x79, 0xf9, 0x74, 0x9d,
+	0x8d, 0x62, 0x50, 0xe9, 0xe3, 0x5e, 0xc3, 0xa8, 0x88, 0xd5, 0xa2, 0xc1, 0x0e, 0x3c, 0x43, 0xa7,
+	0x1c, 0xe1, 0x5a, 0x74, 0x2f, 0x60, 0xe8, 0xb1, 0x28, 0x3f, 0x9d, 0x61, 0x68, 0x95, 0x0d, 0x3f,
+	0x87, 0x51, 0x61, 0xd8, 0x02, 0xcd, 0x17, 0x30, 0x5c, 0x31, 0xde, 0x60, 0x83, 0x0c, 0x46, 0x85,
+	0x61, 0x8b, 0xdc, 0xf2, 0x82, 0xda, 0x47, 0x14, 0xf4, 0x4f, 0x0b, 0xc6, 0x9a, 0x13, 0x6b, 0xa6,
+	0xc4, 0x41, 0x96, 0x10, 0x68, 0xbd, 0x66, 0x69, 0x98, 0x04, 0x0a, 0x7a, 0x4a, 0x12, 0xe8, 0xf8,
+	0x3a, 0x62, 0x0f, 0x0a, 0x1d, 0xdd, 0x69, 0x47, 0xa0, 0xa3, 0xd0, 0x68, 0x7e, 0xed, 0xe5, 0xfc,
+	0xea, 0xfe, 0x00, 0xe3, 0x45, 0x10, 0xe8, 0x43, 0x89, 0x9a, 0x79, 0xd0, 0xd7, 0xa2, 0xaa, 0xc4,
+	0xec, 0xe9, 0x24, 0xcb, 0xd9, 0xd0, 0xdc, 0xd3, 0xbd, 0x41, 0x06, 0x2e, 0xe2, 0xb6, 0x28, 0xf1,
+	0x0b, 0x00, 0xed, 0x97, 0x67, 0x6f, 0x68, 0xdc, 0xcf, 0xe0, 0xd4, 0x63, 0x91, 0x50, 0xa8, 0x13,
+	0x3f, 0x87, 0x81, 0x92, 0xf2, 0x3e, 0x17, 0x0a, 0xf7, 0x0b, 0x18, 0x9b, 0xe6, 0x2d, 0xc0, 0x34,
+	0x85, 0xf1, 0x8a, 0x71, 0xb3, 0x36, 0x63, 0xb0, 0xf3, 0x2d, 0xec, 0xb5, 0xe7, 0xfe, 0x86, 0xe4,
+	0x79, 0x54, 0x96, 0x66, 0x99, 0xed, 0xa3, 0xcb, 0xfc, 0xbb, 0x05, 0x43, 0x35, 0xab, 0x11, 0x4e,
+	0xe5, 0xda, 0x59, 0xd5, 0xda, 0x09, 0xb8, 0xbd, 0x8f, 0x43, 0xae, 0x1e, 0x1f, 0xb8, 0xc6, 0x4b,
+	0xb2, 0x49, 0x99, 0xbf, 0x95, 0x44, 0x66, 0x53, 0x2d, 0x16, 0x04, 0xd7, 0x35, 0x09, 0x0e, 0x1f,
+	0x25, 0x31, 0xf7, 0x23, 0x64, 0xb0, 0x1e, 0x55, 0x92, 0xa2, 0x1e, 0x3c, 0x8d, 0xa2, 0x1e, 0x5c,
+	0x1f, 0xa6, 0x1e, 0x23, 0x01, 0x2a, 0x7d, 0xc4, 0xfd, 0x2f, 0x62, 0xb5, 0x68, 0xd9, 0x27, 0x48,
+	0x30, 0xf9, 0x19, 0xaa, 0xfd, 0x92, 0xb4, 0x72, 0x54, 0xd8, 0x15, 0xe3, 0x4f, 0x86, 0xfd, 0xdb,
+	0x42, 0x36, 0x69, 0x1d, 0xb7, 0xa8, 0x91, 0xdd, 0xbe, 0x46, 0xff, 0x67, 0xfc, 0xbd, 0xfe, 0x6b,
+	0x00, 0xa7, 0x05, 0xa1, 0xc4, 0x1f, 0x12, 0xc2, 0xb0, 0xe2, 0xc5, 0x70, 0xad, 0x19, 0xc9, 0x95,
+	0xa7, 0xd5, 0xe4, 0xd3, 0xa6, 0xa6, 0xd9, 0x4e, 0x6c, 0x63, 0x3e, 0x55, 0xea, 0xb6, 0xa9, 0xbc,
+	0x83, 0xea, 0xb6, 0xd9, 0x7b, 0xfd, 0x30, 0x6c, 0x48, 0xa3, 0x6d, 0x2a, 0xaf, 0x9f, 0xba, 0x6d,
+	0xf6, 0x9e, 0x3c, 0x37, 0xd0, 0xd7, 0x13, 0x92, 0xbc, 0xac, 0xad, 0x82, 0x1e, 0x49, 0x93, 0x57,
+	0x4d, 0xcc, 0x64, 0x68, 0x3d, 0x01, 0xeb, 0x42, 0x1b, 0xe3, 0xb4, 0x2e, 0x74, 0x69, 0x98, 0xde,
+	0x40, 0x5f, 0xcf, 0xbe, 0xba, 0xd0, 0xc6, 0x20, 0xad, 0x0b, 0x5d, 0x1a, 0xa3, 0xb7, 0xc8, 0x01,
+	0x9a, 0x70, 0xc8, 0xac, 0x36, 0x59, 0x83, 0x59, 0x27, 0x97, 0x0d, 0x2d, 0xb3, 0x1d, 0xf1, 0x11,
+	0x42, 0xa8, 0xc2, 0x4d, 0x2e, 0x6a, 0xd3, 0x2e, 0xe6, 0xc4, 0x64, 0xd6, 0xcc, 0x50, 0xa6, 0x61,
+	0xf0, 0x7a, 0x5d, 0x1a, 0xe5, 0x01, 0x31, 0xb9, 0x6c, 0x68, 0x99, 0x63, 0x47, 0x5e, 0xe5, 0x7a,
+	0xec, 0x68, 0xde, 0x39, 0x80, 0x9d, 0x82, 0x7e, 0x24, 0x76, 0x0e, 0x86, 0x36, 0x98, 0xf2, 0x00,
+	0x76, 0x4a, 0xa1, 0x35, 0xd3, 0x1d, 0xc0, 0x4e, 0x93, 0xd0, 0x26, 0x69, 0xde, 0x9e, 0xe0, 0xbf,
+	0xf4, 0x9b, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff, 0xd2, 0x98, 0x34, 0xb1, 0x7f, 0x0f, 0x00, 0x00,
 }
