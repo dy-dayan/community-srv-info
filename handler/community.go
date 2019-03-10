@@ -35,6 +35,7 @@ func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, res
 	info := &db.CommunityInfo{
 		ID:           idResp.Id,
 		Name:         req.Community.Name,
+		SerialNumber: req.Community.SerialNumber,
 		Province:     req.Community.Province,
 		City:         req.Community.City,
 		Region:       req.Community.Region,
@@ -87,6 +88,7 @@ func (h *Handle) GetCommunity(ctx context.Context, req *srv.GetCommunityReq, res
 	}
 
 	resp.Community.Name = info.Name
+	resp.Community.SerialNumber = info.SerialNumber
 	resp.Community.Province = info.Province
 	resp.Community.City = info.City
 	resp.Community.Region = info.Region

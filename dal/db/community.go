@@ -17,6 +17,7 @@ const (
 type CommunityInfo struct {
 	ID           int64     `bson:"_id"` // 小区编号
 	Name         string    `bson:"name"`
+	SerialNumber string    `bson:"serial_number"`
 	Province     string    `bson:"province"`
 	City         string    `bson:"city"`
 	Region       string    `bson:"region"`
