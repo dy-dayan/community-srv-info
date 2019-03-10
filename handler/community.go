@@ -10,9 +10,35 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type Handle struct {
+type Handle struct{}
+
+// convertCommunity 将db中的对象转换为pb对象
+func convertCommunity(item *db.CommunityInfo) *srv.Community {
+	return &srv.Community{
+		Common: &srv.CommunityCommon{
+			Id:           item.ID,
+			Name:         item.Name,
+			Province:     item.Province,
+			City:         item.City,
+			Region:       item.Region,
+			Street:       item.Street,
+			SerialNumber: item.SerialNumber,
+			OrgID:        item.OrgID,
+			HouseCount:   item.HouseCount,
+			CheckInCount: item.CheckInCount,
+			BuildingArea: item.BuildingArea,
+			GreeningArea: item.GreeningArea,
+			Loc:          item.Loc,
+			State:        item.State,
+			SealedState:  item.SealedState,
+			OperatorID:   item.OperatorID,
+		},
+		UpdatedAt: item.UpdatedAt,
+		CreatedAt: item.CreatedAt,
+	}
 }
 
+//AddCommunity 添加一个社区信息
 func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, resp *srv.AddCommunityResp) error {
 	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
@@ -60,6 +86,7 @@ func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, res
 	return nil
 }
 
+//DelCommunity 删除一个社区
 func (h *Handle) DelCommunity(ctx context.Context, req *srv.DelCommunityReq, resp *srv.DelCommunityResp) error {
 	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
@@ -75,11 +102,11 @@ func (h *Handle) DelCommunity(ctx context.Context, req *srv.DelCommunityReq, res
 	return nil
 }
 
-func (h *Handle) GetCommunity(ctx context.Context, req *srv.GetCommunityReq, resp *srv.GetCommunityResp) error {
+//GetCommunityByID 获得一个社区信息
+func (h *Handle) GetCommunityByID(ctx context.Context, req *srv.GetCommunityByIDReq, resp *srv.GetCommunityByIDResp) error {
 	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
 	}
-
 	info, err := db.GetCommunityInfoByID(req.CommunityID)
 	if err != nil {
 		logrus.Warnf("db.GetCommunityInfoByID error:%v", err)
@@ -88,23 +115,59 @@ func (h *Handle) GetCommunity(ctx context.Context, req *srv.GetCommunityReq, res
 		return nil
 	}
 
-	resp.Community.Name = info.Name
-	resp.Community.SerialNumber = info.SerialNumber
-	resp.Community.Province = info.Province
-	resp.Community.City = info.City
-	resp.Community.Region = info.Region
-	resp.Community.Street = info.Street
-	resp.Community.OrgID = info.OrgID
-	resp.Community.HouseCount = info.HouseCount
-	resp.Community.CheckInCount = info.CheckInCount
-	resp.Community.BuildingArea = info.BuildingArea
-	resp.Community.GreeningArea = info.GreeningArea
-	resp.Community.Loc = info.Loc
-	resp.Community.State = info.State
-	resp.Community.OperatorID = info.OperatorID
-	resp.Community.SealedState = info.SealedState
-	resp.CreatedAt = info.CreatedAt
-	resp.UpdatedAt = info.UpdatedAt
+	if info == nil {
+		resp.BaseResp.Msg = "not find data"
+		return nil
+	}
 
+	resp.Community = convertCommunity(info)
+	return nil
+}
+
+//GetCommunity 获得所有社区信息
+func (h *Handle) GetCommunity(ctx context.Context, req *srv.GetCommunityReq, resp *srv.GetCommunityResp) error {
+	resp.BaseResp = &base.Resp{
+		Code: int32(base.CODE_OK),
+	}
+	ret, err := db.GetCommunityInfo(int(req.Limit), int(req.Offset))
+	if err != nil {
+		logrus.Warnf("db.GetCommunityInfoByID error:%v", err)
+		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
+		resp.BaseResp.Msg = err.Error()
+		return nil
+	}
+	if ret == nil {
+		resp.BaseResp.Msg = "not find data"
+		return nil
+	}
+	for _, item := range *ret {
+		tmpValue := item
+		tmp := convertCommunity(&tmpValue)
+		resp.Communitys = append(resp.Communitys, tmp)
+	}
+	return nil
+}
+
+//GetCommunityByLoc
+func (h *Handle) GetCommunityByLoc(ctx context.Context, req *srv.GetCommunityByLocReq, resp *srv.GetCommunityByLocResp) error {
+	resp.BaseResp = &base.Resp{
+		Code: int32(base.CODE_OK),
+	}
+	ret, err := db.GetCommunityInfoByLoc(int(req.Limit), int(req.Offset), req.Loc, req.Distance)
+	if err != nil {
+		logrus.Warnf("db.GetCommunityInfoByID error:%v", err)
+		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
+		resp.BaseResp.Msg = err.Error()
+		return nil
+	}
+	if ret == nil {
+		resp.BaseResp.Msg = "not find data"
+		return nil
+	}
+	for _, item := range *ret {
+		tmpValue := item
+		tmp := convertCommunity(&tmpValue)
+		resp.Communitys = append(resp.Communitys, tmp)
+	}
 	return nil
 }

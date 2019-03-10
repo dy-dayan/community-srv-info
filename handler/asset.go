@@ -10,6 +10,26 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+//convertAsset 转db model to pb model
+func convertAsset(item *db.Asset) *srv.Asset {
+	return &srv.Asset{
+		Common: &srv.AssetCommon{
+			Id:           item.ID,
+			SerialNumber: item.SerialNumber,
+			Category:     item.Category,
+			State:        item.State,
+			CommunityID:  item.CommunityID,
+			Loc:          item.Loc,
+			Brand:        item.Brand,
+			Desc:         item.Desc,
+			OperatorID:   item.OperatorID,
+		},
+		CreatedAt: item.CreatedAt,
+		UpdatedAt: item.UpdatedAt,
+	}
+}
+
+//AddAsset  添加一个资产
 func (h *Handle) AddAsset(ctx context.Context, req *srv.AddAssetReq,
 	resp *srv.AddAssetResp) error {
 	resp.BaseResp = &base.Resp{
@@ -32,15 +52,15 @@ func (h *Handle) AddAsset(ctx context.Context, req *srv.AddAssetReq,
 	}
 
 	data := db.Asset{
-		ID:          idResp.Id,
-		Serial:      req.Asset.Serial,
-		Category:    req.Asset.Category,
-		Loc:         req.Asset.Loc,
-		State:       req.Asset.State,
-		CommunityID: req.Asset.CommunityID,
-		Brand:       req.Asset.Brand,
-		Desc:        req.Asset.Desc,
-		OperatorID:  req.Asset.OperatorID,
+		ID:           idResp.Id,
+		SerialNumber: req.Asset.SerialNumber,
+		Category:     req.Asset.Category,
+		Loc:          req.Asset.Loc,
+		State:        req.Asset.State,
+		CommunityID:  req.Asset.CommunityID,
+		Brand:        req.Asset.Brand,
+		Desc:         req.Asset.Desc,
+		OperatorID:   req.Asset.OperatorID,
 	}
 
 	err = db.UpsertAsset(&data)
@@ -55,6 +75,7 @@ func (h *Handle) AddAsset(ctx context.Context, req *srv.AddAssetReq,
 	return nil
 }
 
+//DelAsset 删除一个资产
 func (h *Handle) DelAsset(ctx context.Context, req *srv.DelAssetReq,
 	resp *srv.DelAssetResp) error {
 	resp.BaseResp = &base.Resp{
@@ -71,26 +92,47 @@ func (h *Handle) DelAsset(ctx context.Context, req *srv.DelAssetReq,
 	return nil
 }
 
-func (h *Handle) GetAsset(ctx context.Context, req *srv.GetAssetReq,
-	resp *srv.GetAssetResp) error {
+//GetAssetByID 通过资产ID 查询一个资产信息
+func (h *Handle) GetAssetByID(ctx context.Context, req *srv.GetAssetByIDReq, resp *srv.GetAssetByIDResp) error {
 	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
 	}
-
 	asset, err := db.GetAssetByID(req.AssetID)
 	if err != nil {
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
 		resp.BaseResp.Msg = err.Error()
 		return nil
 	}
+	//没有查询到数据
+	if asset == nil {
+		resp.BaseResp.Msg = "not find data"
+		return nil
+	}
+	resp.Asset = convertAsset(asset)
+	return nil
+}
 
-	resp.Asset.OperatorID = asset.OperatorID
-	resp.Asset.Desc = asset.Desc
-	resp.Asset.Brand = asset.Brand
-	resp.Asset.CommunityID = asset.CommunityID
-	resp.Asset.State = asset.State
-	resp.Asset.Loc = asset.Loc
-	resp.Asset.Category = asset.Category
-	resp.Asset.Serial = asset.Serial
+//GetAsset 通过社区ID 查询社区内的资产
+func (h *Handle) GetAsset(ctx context.Context, req *srv.GetAssetReq,
+	resp *srv.GetAssetResp) error {
+	resp.BaseResp = &base.Resp{
+		Code: int32(base.CODE_OK),
+	}
+	ret, err := db.GetAsset(int(req.Limit), int(req.Offset), req.CommunityID)
+	if err != nil {
+		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
+		resp.BaseResp.Msg = err.Error()
+	}
+	//没有查询到数据
+	if ret == nil {
+		resp.BaseResp.Msg = "not find data"
+		return nil
+	}
+
+	for _, item := range *ret {
+		tmpItem := item
+		tmp := convertAsset(&tmpItem)
+		resp.Assets = append(resp.Assets, tmp)
+	}
 	return nil
 }

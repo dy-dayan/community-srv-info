@@ -36,6 +36,7 @@ type CommunityInfo struct {
 	OperatorID   int64     `bson:"operator_id"`
 }
 
+//UpsertCommnunityInfo 插入一个社区信息
 func UpsertCommunityInfo(com *CommunityInfo) error {
 	ses := defaultMgo.Copy()
 	if ses == nil {
@@ -65,6 +66,7 @@ func UpsertCommunityInfo(com *CommunityInfo) error {
 	return err
 }
 
+//DelCommunityInfo 删除一个资产信息
 func DelCommunityInfo(id int64) error {
 	ses := defaultMgo.Copy()
 	if ses == nil {
@@ -89,6 +91,7 @@ func DelCommunityInfo(id int64) error {
 	return err
 }
 
+//GetCommunityInfoByID 获得具体社区信息
 func GetCommunityInfoByID(id int64) (*CommunityInfo, error) {
 	ses := defaultMgo.Copy()
 	if ses == nil {
@@ -104,4 +107,34 @@ func GetCommunityInfoByID(id int64) (*CommunityInfo, error) {
 	return ret, err
 }
 
-// todo: 添加根据地理位置获取小区列表
+//GetCommnunityInfo 获得所有社区信息
+func GetCommunityInfo(limit, offset int) (*[]CommunityInfo, error) {
+	ses := defaultMgo.Copy()
+	if ses == nil {
+		return nil, errors.New("mgo session is nil")
+	}
+	defer ses.Close()
+
+	ret := &[]CommunityInfo{}
+	err := ses.DB(DCommunity).C(CCommunityInfo).Find("{}").Skip(offset).Limit(limit).All(ret)
+	return ret, err
+}
+
+//GetCommunityInfoByLoc 获得具体经纬度，范围内的社区信息
+func GetCommunityInfoByLoc(limit, offset int, loc []float32, distance float32) (*[]CommunityInfo, error) {
+	ses := defaultMgo.Copy()
+	if ses == nil {
+		return nil, errors.New("mgo session is nil")
+	}
+
+	defer ses.Close()
+	query := bson.M{
+		"loc": bson.M{
+			"$near":        loc,
+			"$maxDistance": distance,
+		},
+	}
+	ret := &[]CommunityInfo{}
+	err := ses.DB(DCommunity).C(CCommunityInfo).Find(query).Skip(offset).Limit(limit).All(ret)
+	return ret, err
+}

@@ -10,6 +10,24 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+//convertHouse 将db model 转为pb model
+func convertHouse(house *db.House) *srv.House {
+	return &srv.House{
+		Common: &srv.HouseCommon{
+			Id:         house.ID,
+			BuildingID: house.BuildingID,
+			Unit:       house.Unit,
+			Acreage:    house.Acreage,
+			State:      house.State,
+			Rental:     house.Rental,
+			OperatorID: house.OperatorID,
+		},
+		CreatedAt: house.CreatedAt,
+		UpdatedAt: house.UpdatedAt,
+	}
+}
+
+//AddHouse 添加一个房屋信息
 func (h *Handle) AddHouse(ctx context.Context, req *srv.AddHouseReq, resp *srv.AddHouseResp) error {
 	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
@@ -42,13 +60,12 @@ func (h *Handle) AddHouse(ctx context.Context, req *srv.AddHouseReq, resp *srv.A
 	return nil
 }
 
+//DelHouse 删除一个房屋信息
 func (h *Handle) DelHouse(ctx context.Context, req *srv.DelHouseReq, resp *srv.DelHouseResp) error {
 	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
 	}
-
-	err := db.DelHouseByID(req.ID)
-
+	err := db.DelHouseByID(req.Id)
 	if err != nil {
 		logrus.Warnf("db.DelHouse error :%v", err)
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
@@ -57,24 +74,48 @@ func (h *Handle) DelHouse(ctx context.Context, req *srv.DelHouseReq, resp *srv.D
 	return nil
 }
 
+//GetHouseByID 通过房屋ID 查询房屋具体信息
+func (h *Handle) GetHouseByID(ctx context.Context, req *srv.GetHouseByIDReq, resp *srv.GetHouseByIDResp) error {
+	resp.BaseResp = &base.Resp{
+		Code: int32(base.CODE_OK),
+	}
+
+	ret, err := db.GetHouseByID(req.Id)
+	if err != nil {
+		logrus.Warnf("db.DelHouse error :%v", err)
+		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
+		resp.BaseResp.Msg = err.Error()
+	}
+	if ret == nil {
+		resp.BaseResp.Msg = "not find data"
+		return nil
+	}
+
+	resp.House = convertHouse(ret)
+	return nil
+}
+
+//查询社区中所有房屋
 func (h *Handle) GetHouse(ctx context.Context, req *srv.GetHouseReq, resp *srv.GetHouseResp) error {
 	resp.BaseResp = &base.Resp{
 		Code: int32(base.CODE_OK),
 	}
-	ret, err := db.GetHouseByID(req.ID)
+	ret, err := db.GetHouse(int(req.Limit), int(req.Offset), req.CommunityID)
 
 	if err != nil {
 		logrus.Warnf("db.GetHouse error :%v", err)
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
 		resp.BaseResp.Msg = err.Error()
 	}
-	resp.House.OperatorID = ret.OperatorID
-	resp.House.Rental = ret.Rental
-	resp.House.State = ret.State
-	resp.House.Acreage = ret.Acreage
-	resp.House.Unit = ret.Unit
-	resp.House.BuildingID = ret.BuildingID
-	resp.UpdatedAt = ret.UpdatedAt
-	resp.CreatedAt = ret.CreatedAt
+
+	if ret == nil {
+		resp.BaseResp.Msg = "not find data"
+		return nil
+	}
+	for _, item := range *ret {
+		tmpItem := item
+		tmp := convertHouse(&tmpItem)
+		resp.Houses = append(resp.Houses, tmp)
+	}
 	return nil
 }
