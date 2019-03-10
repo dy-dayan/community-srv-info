@@ -39,7 +39,6 @@ func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, res
 		City:         req.Community.City,
 		Region:       req.Community.Region,
 		Street:       req.Community.Street,
-		CouncilID:    req.Community.CouncilID,
 		OrgID:        req.Community.OrgID,
 		HouseCount:   req.Community.HouseCount,
 		CheckInCount: req.Community.CheckInCount,
@@ -92,7 +91,6 @@ func (h *Handle) GetCommunity(ctx context.Context, req *srv.GetCommunityReq, res
 	resp.Community.City = info.City
 	resp.Community.Region = info.Region
 	resp.Community.Street = info.Street
-	resp.Community.CouncilID = info.CouncilID
 	resp.Community.OrgID = info.OrgID
 	resp.Community.HouseCount = info.HouseCount
 	resp.Community.CheckInCount = info.CheckInCount

@@ -21,12 +21,11 @@ type CommunityInfo struct {
 	City         string    `bson:"city"`
 	Region       string    `bson:"region"`
 	Street       string    `bson:"street"`
-	CouncilID    int64     `bson:"council_id"` //居委会ID
 	OrgID        int64     `bson:"org_id"`
 	HouseCount   int32     `bson:"house_count"`
 	CheckInCount int32     `bson:"check_in_count"`
-	BuildingArea int32     `bson:"building_area"`
-	GreeningArea int32     `bson:"greening_area"`
+	BuildingArea float32   `bson:"building_area"`
+	GreeningArea float32   `bson:"greening_area"`
 	Loc          []float32 `bson:"loc"`
 	State        int32     `bson:"state"`
 	Del          int32     `bson:"del"`

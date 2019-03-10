@@ -1,16 +1,16 @@
-package uconfig
+package util
 
 import (
-	"github.com/sirupsen/logrus"
 	"github.com/micro/go-config"
+	"github.com/sirupsen/logrus"
 )
 
 type (
 	MongoDBConfig struct {
-		Addr []string `json:"addr"`
-		Username string `json:"username"`
-		Password string `json:"password"`
-		PoolLimit int `json:"poolLimit"`
+		Addr      []string `json:"addr"`
+		Username  string   `json:"username"`
+		Password  string   `json:"password"`
+		PoolLimit int      `json:"poolLimit"`
 	}
 )
 

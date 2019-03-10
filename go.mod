@@ -1,8 +1,7 @@
 module github.com/dy-dayan/community-srv-info
 
 require (
-	github.com/Sirupsen/logrus v1.0.6
-	github.com/dy-global/idl-cli v0.0.0-20190309030158-d99ddacfb9ba // indirect
+	github.com/dy-dayan/common-srv-atomicid v0.0.0-20190308080608-204577d643a3 // indirect
 	github.com/dy-gopkg/kit v0.0.0-20190308065601-5e4873830d77
 	github.com/golang/protobuf v1.3.0
 	github.com/micro/go-config v1.0.0

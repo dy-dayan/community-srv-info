@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/dy-dayan/community-srv-info/util/config"
+	"github.com/dy-dayan/community-srv-info/util"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
 	"time"
@@ -21,12 +21,12 @@ func Mgo() *mgo.Session {
 
 func Init() {
 	dialInfo := &mgo.DialInfo{
-		Addrs:     uconfig.DefaultMgoConf.Addr,
+		Addrs:     util.DefaultMgoConf.Addr,
 		Direct:    false,
 		Timeout:   time.Second * 3,
-		PoolLimit: uconfig.DefaultMgoConf.PoolLimit,
-		Username:  uconfig.DefaultMgoConf.Username,
-		Password:  uconfig.DefaultMgoConf.Password,
+		PoolLimit: util.DefaultMgoConf.PoolLimit,
+		Username:  util.DefaultMgoConf.Username,
+		Password:  util.DefaultMgoConf.Password,
 	}
 
 	ses, err := mgo.DialWithInfo(dialInfo)

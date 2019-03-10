@@ -4,16 +4,16 @@ import (
 	"github.com/dy-dayan/community-srv-info/dal/db"
 	"github.com/dy-dayan/community-srv-info/handler"
 	"github.com/dy-dayan/community-srv-info/idl/dayan/community/srv-info"
-	"github.com/dy-dayan/community-srv-info/util/config"
+	"github.com/dy-dayan/community-srv-info/util"
 	"github.com/dy-gopkg/kit/micro"
 	"github.com/sirupsen/logrus"
 )
 
-func main(){
+func main() {
 	micro.Init()
 
 	// 初始化配置
-	uconfig.Init()
+	util.Init()
 
 	// 初始化数据库
 	db.Init()
