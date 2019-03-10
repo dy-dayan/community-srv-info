@@ -47,6 +47,7 @@ func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, res
 		GreeningArea: req.Community.GreeningArea,
 		Loc:          req.Community.Loc,
 		State:        req.Community.State,
+		SealedState:  req.Community.SealedState,
 		OperatorID:   req.Community.OperatorID,
 	}
 	err = db.UpsertCommunityInfo(info)
@@ -101,6 +102,7 @@ func (h *Handle) GetCommunity(ctx context.Context, req *srv.GetCommunityReq, res
 	resp.Community.Loc = info.Loc
 	resp.Community.State = info.State
 	resp.Community.OperatorID = info.OperatorID
+	resp.Community.SealedState = info.SealedState
 	resp.CreatedAt = info.CreatedAt
 	resp.UpdatedAt = info.UpdatedAt
 

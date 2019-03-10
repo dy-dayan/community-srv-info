@@ -22,6 +22,7 @@ type CommunityInfo struct {
 	City         string    `bson:"city"`
 	Region       string    `bson:"region"`
 	Street       string    `bson:"street"`
+	SealedState  int32     `bson:"sealed_state"`
 	OrgID        int64     `bson:"org_id"`
 	HouseCount   int32     `bson:"house_count"`
 	CheckInCount int32     `bson:"check_in_count"`
