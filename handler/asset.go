@@ -72,6 +72,7 @@ func (h *Handle) AddAsset(ctx context.Context, req *srv.AddAssetReq,
 		resp.BaseResp.Msg = err.Error()
 		return nil
 	}
+	resp.AssetID = idResp.Id
 	return nil
 }
 

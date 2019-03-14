@@ -57,6 +57,7 @@ func (h *Handle) AddHouse(ctx context.Context, req *srv.AddHouseReq, resp *srv.A
 		resp.BaseResp.Code = int32(base.CODE_DATA_EXCEPTION)
 		resp.BaseResp.Msg = err.Error()
 	}
+	resp.Id = idResp.Id
 	return nil
 }
 

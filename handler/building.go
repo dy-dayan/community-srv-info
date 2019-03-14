@@ -64,6 +64,7 @@ func (h *Handle) AddBuilding(ctx context.Context, req *srv.AddBuildingReq, resp 
 		resp.BaseResp.Msg = err.Error()
 		return nil
 	}
+	resp.Id = idResp.Id
 	return nil
 }
 

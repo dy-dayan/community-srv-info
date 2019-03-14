@@ -83,6 +83,7 @@ func (h *Handle) AddCommunity(ctx context.Context, req *srv.AddCommunityReq, res
 		resp.BaseResp.Msg = err.Error()
 		return nil
 	}
+	resp.CommunityID = idResp.Id
 	return nil
 }
 
